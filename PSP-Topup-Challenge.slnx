@@ -1,1 +1,13 @@
-<Solution />
+<Solution>
+  <Folder Name="/docker/" />
+  <Folder Name="/docs/" />
+  <Folder Name="/scripts/" />
+  <Folder Name="/src/" />
+  <Folder Name="/src/BuildingBlocks/" />
+  <Folder Name="/src/Gateway/" />
+  <Folder Name="/src/Mocks/" />
+  <Folder Name="/src/Services/" />
+  <Folder Name="/src/Services/Payment/" />
+  <Folder Name="/src/Services/Topup/" />
+  <Folder Name="/tests/" />
+</Solution>
