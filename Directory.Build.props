@@ -1,0 +1,30 @@
+<Project>
+
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+
+        <Nullable>enable</Nullable>
+
+        <ImplicitUsings>enable</ImplicitUsings>
+
+        <LangVersion>preview</LangVersion>
+
+        <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+
+        <NoWarn>$(NoWarn);CS1591</NoWarn>
+
+        <AnalysisLevel>latest</AnalysisLevel>
+
+        <EnableNETAnalyzers>true</EnableNETAnalyzers>
+
+        <Authors>Saeed Ghafori</Authors>
+
+        <Company>PSP Topup Challenge</Company>
+
+        <RootNamespace>PSP</RootNamespace>
+
+    </PropertyGroup>
+
+</Project>

@@ -1,9 +1,28 @@
 <Solution>
-  <Folder Name="/docker/" />
+  <Folder Name="/docker/">
+    <File Path="docker-compose.yml" />
+  </Folder>
   <Folder Name="/docs/" />
-  <Folder Name="/scripts/" />
+  <Folder Name="/docs/ADR/" />
+  <Folder Name="/docs/Architecture/" />
+  <Folder Name="/docs/C4/" />
+  <Folder Name="/docs/Images/" />
+  <Folder Name="/docs/Sequence/" />
+  <Folder Name="/scripts/">
+    <File Path="build.ps1" />
+    <File Path="clean.ps1" />
+    <File Path="run.ps1" />
+  </Folder>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+    <File Path="README.md" />
+  </Folder>
   <Folder Name="/src/" />
-  <Folder Name="/src/BuildingBlocks/" />
+  <Folder Name="/src/BuildingBlocks/">
+    <Project Path="D:/Apps/Source Repos/PSP-Topup-Challenge/PSP.SharedKernel/PSP.SharedKernel.csproj" Id="90ce892b-e784-467b-b8b3-be007db419b8" />
+  </Folder>
   <Folder Name="/src/Gateway/" />
   <Folder Name="/src/Mocks/" />
   <Folder Name="/src/Services/" />
