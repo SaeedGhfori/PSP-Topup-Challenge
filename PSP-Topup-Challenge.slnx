@@ -34,6 +34,7 @@
     <Project Path="PSP.Topup.Api/PSP.Topup.Api.csproj" Id="0c50f099-1a5f-4148-ab05-dcc9256b65c1" />
     <Project Path="PSP.Topup.Application/PSP.Topup.Application.csproj" Id="4ae90d5b-921f-441a-bb80-63a15739b54a" />
     <Project Path="PSP.Topup.Domain/PSP.Topup.Domain.csproj" Id="6a1d7487-52bd-4c85-b42c-f13957ef78e3" />
+    <Project Path="PSP.Topup.Infrastructure/PSP.Topup.Infrastructure.csproj" Id="9210154e-990b-4207-8c2e-743c4393c41d" />
   </Folder>
   <Folder Name="/tests/" />
 </Solution>

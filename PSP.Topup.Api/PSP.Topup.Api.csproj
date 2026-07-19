@@ -13,11 +13,18 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Application\" />
-        <Folder Include="Domain\" />
-        <Folder Include="Infrastructure\" />
+        <Folder Include="OpenApi\" />
+        <Folder Include="Filters\" />
+        <Folder Include="Middlewares\" />
         <Folder Include="Configurations\" />
         <Folder Include="Extensions\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\PSP.Contracts\PSP.Contracts.csproj" />
+      <ProjectReference Include="..\PSP.SharedKernel\PSP.SharedKernel.csproj" />
+      <ProjectReference Include="..\PSP.Topup.Application\PSP.Topup.Application.csproj" />
+      <ProjectReference Include="..\PSP.Topup.Infrastructure\PSP.Topup.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>
