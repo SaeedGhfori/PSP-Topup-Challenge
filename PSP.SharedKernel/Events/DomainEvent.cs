@@ -1,4 +1,4 @@
-namespace PSP.SharedKernel.Events;
+namespace PSP.Events;
 
 public abstract record DomainEvent : IDomainEvent
 {

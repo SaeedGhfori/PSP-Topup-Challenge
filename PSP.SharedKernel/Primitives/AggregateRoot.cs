@@ -1,4 +1,4 @@
-namespace PSP.SharedKernel.Primitives;
+namespace PSP.Primitives;
 
 public abstract class AggregateRoot<TId>(TId id)
     : Entity<TId>(id)

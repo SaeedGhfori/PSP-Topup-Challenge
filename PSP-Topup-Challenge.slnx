@@ -30,6 +30,8 @@
   <Folder Name="/src/Mocks/" />
   <Folder Name="/src/Services/" />
   <Folder Name="/src/Services/Payment/" />
-  <Folder Name="/src/Services/Topup/" />
+  <Folder Name="/src/Services/Topup/">
+    <Project Path="PSP.Topup.Api/PSP.Topup.Api.csproj" Id="0c50f099-1a5f-4148-ab05-dcc9256b65c1" />
+  </Folder>
   <Folder Name="/tests/" />
 </Solution>

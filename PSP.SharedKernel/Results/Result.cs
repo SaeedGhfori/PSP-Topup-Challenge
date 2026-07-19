@@ -1,4 +1,4 @@
-namespace PSP.SharedKernel.Results;
+namespace PSP.Results;
 
 public class Result
 {

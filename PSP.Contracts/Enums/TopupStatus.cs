@@ -1,4 +1,4 @@
-namespace PSP.Contracts.Enums;
+namespace PSP.Enums;
 
 public enum TopupStatus
 {

@@ -1,6 +1,6 @@
-using PSP.SharedKernel.Events;
+using PSP.Events;
 
-namespace PSP.SharedKernel.Primitives;
+namespace PSP.Primitives;
 
 public abstract class Entity<TId>
     where TId : notnull
