@@ -14,4 +14,8 @@
     <Folder Include="ValueObjects\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PSP.Contracts\PSP.Contracts.csproj" />
+  </ItemGroup>
+
 </Project>

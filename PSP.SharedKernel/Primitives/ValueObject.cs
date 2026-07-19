@@ -6,11 +6,8 @@ public abstract class ValueObject
 
     public override bool Equals(object? obj)
     {
-        if (obj is not ValueObject other ||
-            other.GetType() != GetType())
-        {
+        if (obj is not ValueObject other)
             return false;
-        }
 
         return GetEqualityComponents()
             .SequenceEqual(other.GetEqualityComponents());
@@ -20,8 +17,9 @@ public abstract class ValueObject
     {
         return GetEqualityComponents()
             .Aggregate(
-                0,
-                (current, obj) => HashCode.Combine(current, obj));
+                1,
+                (current, obj) =>
+                    HashCode.Combine(current, obj));
     }
 
     public static bool operator ==(ValueObject? left, ValueObject? right)

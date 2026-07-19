@@ -1,3 +1,5 @@
 namespace PSP.SharedKernel.Primitives;
 
-public abstract class AggregateRoot(Guid id) : Entity(id);
+public abstract class AggregateRoot<TId>(TId id)
+    : Entity<TId>(id)
+    where TId : notnull;

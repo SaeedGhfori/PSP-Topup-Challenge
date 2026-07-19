@@ -1,11 +1,14 @@
 namespace PSP.SharedKernel.Events;
 
-public abstract record DomainEvent(
-    Guid EventId,
-    DateTime OccurredOnUtc)
+public abstract record DomainEvent : IDomainEvent
 {
     protected DomainEvent()
-        : this(Guid.NewGuid(), DateTime.UtcNow)
     {
+        EventId = Guid.NewGuid();
+        OccurredOnUtc = DateTime.UtcNow;
     }
+
+    public Guid EventId { get; }
+
+    public DateTime OccurredOnUtc { get; }
 }

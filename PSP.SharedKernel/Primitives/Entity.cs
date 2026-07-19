@@ -1,43 +1,28 @@
+using PSP.SharedKernel.Events;
+
 namespace PSP.SharedKernel.Primitives;
 
-public abstract class Entity
+public abstract class Entity<TId>
+    where TId : notnull
 {
-    private readonly List<object> _domainEvents = [];
+    private readonly List<IDomainEvent> _domainEvents = [];
 
-    protected Entity(Guid id)
+    protected Entity(TId id)
     {
         Id = id;
     }
 
-    public Guid Id { get; protected set; }
+    public TId Id { get; }
 
-    public IReadOnlyCollection<object> DomainEvents => _domainEvents.AsReadOnly();
+    public IReadOnlyCollection<IDomainEvent> DomainEvents => _domainEvents.AsReadOnly();
+
+    protected void Raise(IDomainEvent domainEvent)
+    {
+        _domainEvents.Add(domainEvent);
+    }
 
     public void ClearDomainEvents()
     {
         _domainEvents.Clear();
     }
-
-    protected void RaiseDomainEvent(object domainEvent)
-    {
-        _domainEvents.Add(domainEvent);
-    }
-
-    public override bool Equals(object? obj)
-    {
-        if (obj is not Entity other)
-        {
-            return false;
-        }
-
-        return GetType() == other.GetType() && Id == other.Id;
-    }
-
-    public override int GetHashCode() => Id.GetHashCode();
-
-    public static bool operator ==(Entity? left, Entity? right)
-        => Equals(left, right);
-
-    public static bool operator !=(Entity? left, Entity? right)
-        => !Equals(left, right);
 }

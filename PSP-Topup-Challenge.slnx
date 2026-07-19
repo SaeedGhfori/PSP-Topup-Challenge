@@ -22,6 +22,7 @@
   <Folder Name="/src/" />
   <Folder Name="/src/BuildingBlocks/">
     <Project Path="D:/Apps/Source Repos/PSP-Topup-Challenge/PSP.SharedKernel/PSP.SharedKernel.csproj" Id="90ce892b-e784-467b-b8b3-be007db419b8" />
+    <Project Path="PSP.Contracts/PSP.Contracts.csproj" />
   </Folder>
   <Folder Name="/src/Gateway/" />
   <Folder Name="/src/Mocks/" />
