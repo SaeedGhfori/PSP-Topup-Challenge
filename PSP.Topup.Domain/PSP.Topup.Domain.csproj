@@ -7,11 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Entities\" />
     <Folder Include="TopupAggregate\Exceptions\" />
     <Folder Include="TopupAggregate\Specifications\" />
     <Folder Include="Services\" />
     <Folder Include="Repositories\" />
     <Folder Include="TopupTransaction\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PSP.SharedKernel\PSP.SharedKernel.csproj" />
   </ItemGroup>
 
 </Project>

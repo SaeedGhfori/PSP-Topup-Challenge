@@ -1,18 +1,13 @@
 namespace PSP.Topup.Domain.Common;
 
-/// <summary>
-/// Represents a value object.
-/// </summary>
 public abstract class ValueObject
 {
     protected abstract IEnumerable<object?> GetEqualityComponents();
 
     public override bool Equals(object? obj)
     {
-        if (obj is null || obj.GetType() != GetType())
+        if (obj is not ValueObject other)
             return false;
-
-        var other = (ValueObject)obj;
 
         return GetEqualityComponents()
             .SequenceEqual(other.GetEqualityComponents());
@@ -21,14 +16,6 @@ public abstract class ValueObject
     public override int GetHashCode()
     {
         return GetEqualityComponents()
-            .Aggregate(
-                17,
-                (current, obj) => current * 23 + (obj?.GetHashCode() ?? 0));
+            .Aggregate(0, HashCode.Combine);
     }
-
-    public static bool operator ==(ValueObject? left, ValueObject? right)
-        => Equals(left, right);
-
-    public static bool operator !=(ValueObject? left, ValueObject? right)
-        => !Equals(left, right);
 }

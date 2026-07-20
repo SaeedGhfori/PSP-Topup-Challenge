@@ -1,11 +1,6 @@
-using PSP.Topup.Domain.Common;
+namespace PSP.Topup.Domain.ValueObjects;
 
-namespace PSP.Topup.Domain.TopupAggregate.ValueObjects;
-
-/// <summary>
-/// Represents a monetary value.
-/// </summary>
-public sealed class Money : ValueObject
+public sealed record Money
 {
     public decimal Value { get; }
 
@@ -17,11 +12,9 @@ public sealed class Money : ValueObject
         Value = value;
     }
 
-    protected override IEnumerable<object?> GetEqualityComponents()
-    {
-        yield return Value;
-    }
+    public static implicit operator decimal(Money money)
+        => money.Value;
 
-    public override string ToString()
-        => Value.ToString("0");
+    public static implicit operator Money(decimal value)
+        => new(value);
 }

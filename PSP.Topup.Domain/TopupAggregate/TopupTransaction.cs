@@ -1,12 +1,20 @@
 using PSP.Topup.Domain.Common;
 using PSP.Topup.Domain.TopupAggregate.Enums;
-using PSP.Topup.Domain.TopupAggregate.Events;
-using PSP.Topup.Domain.TopupAggregate.ValueObjects;
+using PSP.Topup.Domain.ValueObjects;
 
 namespace PSP.Topup.Domain.TopupAggregate;
 
-public sealed class TopupTransaction : AggregateRoot<Guid>
+/// <summary>
+/// Represents a top-up transaction aggregate.
+/// </summary>
+public sealed class TopupTransaction : AuditableEntity<Guid>
 {
+    // Required by EF Core
+    private TopupTransaction()
+        : base(Guid.Empty)
+    {
+    }
+
     private TopupTransaction(
         Guid id,
         PhoneNumber phoneNumber,
@@ -22,29 +30,28 @@ public sealed class TopupTransaction : AggregateRoot<Guid>
 
         Status = TransactionStatus.Pending;
 
-        CreatedAtUtc = DateTime.UtcNow;
-        UpdatedAtUtc = DateTime.UtcNow;
-
-        Raise(new TopupRequestedDomainEvent(id));
+        //Raise(new TopupRequestedDomainEvent(id));
     }
 
-    public PhoneNumber PhoneNumber { get; }
+    public PhoneNumber PhoneNumber { get; private set; } = default!;
 
-    public Money Amount { get; }
+    public Money Amount { get; private set; } = default!;
 
-    public MobileOperator MobileOperator { get; }
+    public MobileOperator MobileOperator { get; private set; }
 
     public TransactionStatus Status { get; private set; }
 
-    public string IdempotencyKey { get; }
+    public string IdempotencyKey { get; private set; } = string.Empty;
 
+    /// <summary>
+    /// Reference returned by MCI after successful top-up.
+    /// </summary>
     public string? ProviderReference { get; private set; }
 
+    /// <summary>
+    /// Failure reason returned by provider.
+    /// </summary>
     public string? FailureReason { get; private set; }
-
-    public DateTime CreatedAtUtc { get; }
-
-    public DateTime UpdatedAtUtc { get; private set; }
 
     public static TopupTransaction Create(
         PhoneNumber phoneNumber,
@@ -62,19 +69,39 @@ public sealed class TopupTransaction : AggregateRoot<Guid>
 
     public void MarkSucceeded(string providerReference)
     {
-        ProviderReference = providerReference;
+        ArgumentException.ThrowIfNullOrWhiteSpace(providerReference);
 
+        ProviderReference = providerReference;
+        FailureReason = null;
         Status = TransactionStatus.TopupSucceeded;
 
-        UpdatedAtUtc = DateTime.UtcNow;
+        MarkUpdated();
     }
 
     public void MarkFailed(string reason)
     {
-        FailureReason = reason;
+        ArgumentException.ThrowIfNullOrWhiteSpace(reason);
 
+        FailureReason = reason;
         Status = TransactionStatus.Failed;
 
-        UpdatedAtUtc = DateTime.UtcNow;
+        MarkUpdated();
+    }
+
+    public void MarkConfirmationSent()
+    {
+        Status = TransactionStatus.ConfirmationSent;
+
+        MarkUpdated();
+    }
+
+    public void MarkReversed(string reason)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(reason);
+
+        FailureReason = reason;
+        Status = TransactionStatus.ReversalSent;
+
+        MarkUpdated();
     }
 }
