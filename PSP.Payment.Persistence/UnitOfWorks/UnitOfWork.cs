@@ -1,7 +1,7 @@
 using PSP.Payment.Domain.Common;
 using PSP.Payment.Persistence.Context;
 
-namespace PSP.Payment.Persistence.UnitOfWorks;
+namespace PSP.Payment.Persistence;
 
 public sealed class UnitOfWork
     : IUnitOfWork

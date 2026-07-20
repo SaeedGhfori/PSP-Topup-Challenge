@@ -1,26 +1,26 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 using Microsoft.EntityFrameworkCore;
 
-namespace PSP.Payment.Persistence.Context
+using PSP.Payment.Domain.Entities;
+
+namespace PSP.Payment.Persistence.Context;
+
+public sealed class PaymentDbContext : DbContext
 {
-    public class PaymentDbContext : DbContext
+    public PaymentDbContext(
+        DbContextOptions<PaymentDbContext> options)
+        : base(options)
     {
-        public PaymentDbContext(
-             DbContextOptions<PaymentDbContext> options)
-             : base(options)
-        {
-        }
+    }
 
-        //public DbSet<TopupTransaction> TopupTransactions => Set<TopupTransaction>();
+    public DbSet<PaymentTransaction> PaymentTransactions
+        => Set<PaymentTransaction>();
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(PaymentDbContext).Assembly);
+    protected override void OnModelCreating(
+        ModelBuilder modelBuilder)
+    {
+        modelBuilder.ApplyConfigurationsFromAssembly(
+            typeof(PaymentDbContext).Assembly);
 
-            base.OnModelCreating(modelBuilder);
-        }
+        base.OnModelCreating(modelBuilder);
     }
 }

@@ -26,7 +26,6 @@
     <ItemGroup>
         <Folder Include="Migrations\" />
         <Folder Include="Interceptors\" />
-        <Folder Include="Repositories\" />
     </ItemGroup>
 
 </Project>
