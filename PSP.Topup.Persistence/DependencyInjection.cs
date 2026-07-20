@@ -2,10 +2,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
+using PSP.Context;
+using PSP.Interceptors;
 using PSP.Topup.Persistence.Context;
-using PSP.Topup.Persistence.Interceptors;
 
-namespace PSP.Topup.Persistence;
+namespace PSP;
 
 public static class DependencyInjection
 {

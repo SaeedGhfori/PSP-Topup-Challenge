@@ -1,6 +1,8 @@
 using FluentValidation;
 
-namespace PSP.Topup.Application.Features.Topup.Create;
+using PSP.Features.Topup.Commands;
+
+namespace PSP.Features.Topup.Validators;
 
 public sealed class CreateTopupCommandValidator
     : AbstractValidator<CreateTopupCommand>

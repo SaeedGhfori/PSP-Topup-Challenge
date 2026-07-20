@@ -1,7 +1,6 @@
-
 using PSP.Entities;
 
-namespace PSP.Topup.Domain.Repositories;
+namespace PSP.Abstractions.Persistence;
 
 public interface ITopupRepository
 {

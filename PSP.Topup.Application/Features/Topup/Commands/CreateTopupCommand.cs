@@ -1,6 +1,8 @@
 using MediatR;
 
-namespace PSP.Topup.Application.Features.Topup.Create;
+using PSP.Features.Topup.DTOs;
+
+namespace PSP.Features.Topup.Commands;
 
 public sealed record CreateTopupCommand(
     string PhoneNumber,

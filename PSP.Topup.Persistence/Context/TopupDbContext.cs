@@ -2,11 +2,12 @@ using Microsoft.EntityFrameworkCore;
 
 using PSP.Entities;
 
-namespace PSP.Topup.Persistence.Context;
+namespace PSP.Context;
 
 public sealed class TopupDbContext : DbContext
 {
-    public TopupDbContext(DbContextOptions<TopupDbContext> options)
+    public TopupDbContext(
+        DbContextOptions<TopupDbContext> options)
         : base(options)
     {
     }

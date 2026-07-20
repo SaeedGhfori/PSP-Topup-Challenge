@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 using PSP.Entities;
 
-namespace PSP.Topup.Persistence.Configurations;
+namespace PSP.Configurations;
 
 public sealed class TopupTransactionConfiguration
     : IEntityTypeConfiguration<TopupTransaction>

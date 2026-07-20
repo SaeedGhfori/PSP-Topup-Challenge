@@ -2,7 +2,7 @@ using FluentValidation;
 
 using Microsoft.Extensions.DependencyInjection;
 
-namespace PSP.Topup.Application;
+namespace PSP;
 
 public static class DependencyInjection
 {

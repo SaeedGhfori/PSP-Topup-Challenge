@@ -1,4 +1,4 @@
-namespace PSP.Topup.Domain.Common;
+namespace PSP.Common;
 
 /// <summary>
 /// Base auditable entity.

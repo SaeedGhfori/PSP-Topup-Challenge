@@ -1,4 +1,4 @@
-namespace PSP.Topup.Domain.Common;
+namespace PSP.Common;
 
 public abstract class ValueObject
 {
