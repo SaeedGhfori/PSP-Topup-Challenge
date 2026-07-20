@@ -2,12 +2,11 @@ using PSP.Contracts.Messaging;
 
 namespace PSP.Contracts.IntegrationEvents;
 
-public sealed record TopupRequestedIntegrationEvent(
+public sealed record TopupCompletedIntegrationEvent(
     Guid TransactionId,
-    string PhoneNumber,
-    decimal Amount,
-    int OperatorId,
-    string IdempotencyKey)
+    bool Success,
+    string? ProviderReference,
+    string? FailureReason)
     : IIntegrationEvent
 {
     public Guid EventId { get; init; }
