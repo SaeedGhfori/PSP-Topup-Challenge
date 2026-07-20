@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 
 using PSP.Entities;
 
-namespace PSP.Context;
+namespace PSP.Topup.Persistence;
 
 public sealed class TopupDbContext : DbContext
 {

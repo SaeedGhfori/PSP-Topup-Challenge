@@ -1,6 +1,6 @@
 using PSP.Common;
 using PSP.Enums;
-using PSP.Topup.Domain.Events;
+using PSP.Events;
 using PSP.ValueObjects;
 
 namespace PSP.Entities;
