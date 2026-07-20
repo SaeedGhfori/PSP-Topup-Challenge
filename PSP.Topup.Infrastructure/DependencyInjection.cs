@@ -3,8 +3,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 
 using PSP.Topup.Application.Contracts.Mci;
+using PSP.Topup.Application.Contracts.Services;
 using PSP.Topup.Infrastructure.Clients;
 using PSP.Topup.Infrastructure.Configuration;
+using PSP.Topup.Infrastructure.Services;
 
 namespace PSP.Topup.Infrastructure;
 
@@ -29,6 +31,8 @@ public static class DependencyInjection
                 client.Timeout =
                     TimeSpan.FromSeconds(options.Timeout);
             });
+
+        services.AddScoped<ITopupProcessor, TopupProcessor>();
 
         return services;
     }

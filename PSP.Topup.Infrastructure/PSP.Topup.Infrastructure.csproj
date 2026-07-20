@@ -17,7 +17,6 @@
     <ItemGroup>
         <Folder Include="Contracts\" />
         <Folder Include="Messaging\" />
-        <Folder Include="Services\" />
         <Folder Include="Logging\" />
         <Folder Include="Caching\" />
         <Folder Include="Exceptions\" />
