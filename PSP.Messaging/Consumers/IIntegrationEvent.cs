@@ -1,4 +1,4 @@
-namespace PSP.Messaging.Contracts;
+namespace PSP.Messaging.Consumers;
 
 public interface IIntegrationEvent
 {

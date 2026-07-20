@@ -21,4 +21,8 @@
         <ProjectReference Include="..\PSP.SharedKernel\PSP.SharedKernel.csproj" />
         <ProjectReference Include="..\PSP.Payment.Domain\PSP.Payment.Domain.csproj" />
     </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Contracts\Messaging\" />
+    </ItemGroup>
 </Project>

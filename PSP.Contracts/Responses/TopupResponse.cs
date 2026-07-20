@@ -1,6 +1,6 @@
-using PSP.Enums;
+using PSP.Contracts.Enums;
 
-namespace PSP.Responses;
+namespace PSP.Contracts.Responses;
 
 public sealed record TopupResponse(
     Guid TransactionId,

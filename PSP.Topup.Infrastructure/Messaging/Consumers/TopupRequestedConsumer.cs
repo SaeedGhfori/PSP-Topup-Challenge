@@ -1,6 +1,6 @@
 using MassTransit;
 
-using PSP.Events;
+using PSP.Contracts.Events;
 using PSP.Topup.Application.Contracts.Services;
 
 public sealed class TopupRequestedConsumer

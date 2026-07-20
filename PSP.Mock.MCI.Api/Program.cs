@@ -1,5 +1,7 @@
 using PSP.Mock.MCI.Api.Extensions;
+
 using Scalar.AspNetCore;
+
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);

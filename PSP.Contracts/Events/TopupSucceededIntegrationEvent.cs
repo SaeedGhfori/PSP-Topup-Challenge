@@ -1,4 +1,4 @@
-namespace PSP.Events;
+namespace PSP.Contracts.Events;
 
 public sealed record TopupSucceededIntegrationEvent(
     Guid TransactionId,

@@ -2,9 +2,9 @@ using MediatR;
 
 using Microsoft.Extensions.Logging;
 
-using PSP.Events;
+using PSP.Contracts.Events;
+using PSP.Messaging.Abstractions;
 using PSP.Payment.Application.Contracts.Bank;
-using PSP.Payment.Application.Contracts.Messaging;
 using PSP.Payment.Application.Features.DTOs;
 using PSP.Payment.Application.Features.Payments.Commands;
 using PSP.Payment.Domain.Common;

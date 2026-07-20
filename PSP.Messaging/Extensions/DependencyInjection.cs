@@ -4,9 +4,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 using PSP.Messaging.Abstractions;
-using PSP.Messaging.Services;
+using PSP.Messaging.Contracts;
 
-namespace PSP.Messaging;
+namespace PSP.Messaging.Extensions;
 
 public static class DependencyInjection
 {

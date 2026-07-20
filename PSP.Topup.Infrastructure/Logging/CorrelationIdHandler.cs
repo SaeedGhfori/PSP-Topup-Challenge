@@ -1,5 +1,3 @@
-using System.Net.Http;
-
 public sealed class CorrelationIdHandler : DelegatingHandler
 {
     protected override Task<HttpResponseMessage> SendAsync(

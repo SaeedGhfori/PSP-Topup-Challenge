@@ -2,7 +2,7 @@ using MassTransit;
 
 using PSP.Messaging.Abstractions;
 
-namespace PSP.Messaging.Services;
+namespace PSP.Messaging.Contracts;
 
 public sealed class MassTransitMessageBus
     : IMessageBus

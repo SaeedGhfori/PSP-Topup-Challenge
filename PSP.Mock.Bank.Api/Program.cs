@@ -1,8 +1,8 @@
 using PSP.Mock.Bank.Api.Extensions;
 
-using Serilog;
-
 using Scalar.AspNetCore;
+
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
