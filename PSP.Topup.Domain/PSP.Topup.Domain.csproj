@@ -7,13 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Events\" />
-    <Folder Include="Enums\" />
-    <Folder Include="Exceptions\" />
-    <Folder Include="Specifications\" />
+    <Folder Include="TopupAggregate\Events\" />
+    <Folder Include="TopupAggregate\Exceptions\" />
+    <Folder Include="TopupAggregate\Specifications\" />
     <Folder Include="Services\" />
     <Folder Include="Repositories\" />
-    <Folder Include="ValueObjects\" />
+    <Folder Include="TopupAggregate\ValueObjects\" />
+    <Folder Include="TopupTransaction\" />
   </ItemGroup>
 
 </Project>
