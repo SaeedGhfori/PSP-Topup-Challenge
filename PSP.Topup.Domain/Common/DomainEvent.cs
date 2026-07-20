@@ -1,5 +1,8 @@
-namespace PSP.Events;
+namespace PSP.Topup.Domain.Common;
 
+/// <summary>
+/// Base implementation for domain events.
+/// </summary>
 public abstract record DomainEvent : IDomainEvent
 {
     protected DomainEvent()

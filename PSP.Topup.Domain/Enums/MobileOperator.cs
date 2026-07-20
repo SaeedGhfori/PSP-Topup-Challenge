@@ -1,4 +1,4 @@
-namespace PSP.Topup.Domain.TopupAggregate.Enums;
+namespace PSP.Enums;
 
 /// <summary>
 /// Supported mobile operators.

@@ -1,5 +1,8 @@
 namespace PSP.Topup.Domain.Common;
 
+/// <summary>
+/// Base auditable entity.
+/// </summary>
 public abstract class AuditableEntity<TId> : AggregateRoot<TId>
     where TId : notnull
 {
@@ -19,7 +22,7 @@ public abstract class AuditableEntity<TId> : AggregateRoot<TId>
 
     public byte[] RowVersion { get; private set; } = [];
 
-    protected void MarkUpdated()
+    public void MarkUpdated()
     {
         UpdatedAtUtc = DateTime.UtcNow;
     }
@@ -28,5 +31,7 @@ public abstract class AuditableEntity<TId> : AggregateRoot<TId>
     {
         IsDeleted = true;
         DeletedAtUtc = DateTime.UtcNow;
+
+        MarkUpdated();
     }
 }

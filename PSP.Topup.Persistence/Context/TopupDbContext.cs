@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-using PSP.Topup.Domain.TopupAggregate;
+using PSP.Entities;
 
 namespace PSP.Topup.Persistence.Context;
 

@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-using PSP.Topup.Domain.TopupAggregate;
+using PSP.Entities;
 
 namespace PSP.Topup.Persistence.Configurations;
 

@@ -1,8 +1,9 @@
+using PSP.Enums;
 using PSP.Topup.Domain.Common;
-using PSP.Topup.Domain.TopupAggregate.Enums;
-using PSP.Topup.Domain.ValueObjects;
+using PSP.Topup.Domain.Events;
+using PSP.ValueObjects;
 
-namespace PSP.Topup.Domain.TopupAggregate;
+namespace PSP.Entities;
 
 /// <summary>
 /// Represents a top-up transaction aggregate.
@@ -30,7 +31,7 @@ public sealed class TopupTransaction : AuditableEntity<Guid>
 
         Status = TransactionStatus.Pending;
 
-        //Raise(new TopupRequestedDomainEvent(id));
+        RaiseDomainEvent(new TopupRequestedDomainEvent(id));
     }
 
     public PhoneNumber PhoneNumber { get; private set; } = default!;
