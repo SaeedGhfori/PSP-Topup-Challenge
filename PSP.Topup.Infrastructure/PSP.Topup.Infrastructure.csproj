@@ -23,7 +23,6 @@
         <Folder Include="Messaging\Publishers\" />
         <Folder Include="Options\" />
         <Folder Include="Resilience\" />
-        <Folder Include="Persistence\" />
     </ItemGroup>
 
     <ItemGroup>

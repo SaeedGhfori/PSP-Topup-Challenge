@@ -7,4 +7,17 @@
     <RootNamespace>PSP.Payment.Application</RootNamespace>
   </PropertyGroup>
 
+    <ItemGroup>
+        <PackageReference Include="MediatR" />
+        <PackageReference Include="FluentValidation" />
+        <PackageReference Include="FluentValidation.AspNetCore" />
+        <PackageReference Include="Mapster" />
+        <PackageReference Include="Mapster.DependencyInjection" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\PSP.Contracts\PSP.Contracts.csproj" />
+        <ProjectReference Include="..\PSP.SharedKernel\PSP.SharedKernel.csproj" />
+        <ProjectReference Include="..\PSP.Payment.Domain\PSP.Payment.Domain.csproj" />
+    </ItemGroup>
 </Project>

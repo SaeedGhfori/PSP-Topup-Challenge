@@ -7,8 +7,7 @@
     <RootNamespace>PSP.Payment.Domain</RootNamespace>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Common\" />
-  </ItemGroup>
-
+    <ItemGroup>
+        <ProjectReference Include="..\PSP.SharedKernel\PSP.SharedKernel.csproj" />
+    </ItemGroup>
 </Project>
