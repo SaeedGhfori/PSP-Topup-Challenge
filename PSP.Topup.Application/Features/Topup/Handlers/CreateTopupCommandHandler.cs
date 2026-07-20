@@ -1,8 +1,9 @@
 using MediatR;
 
+using PSP.Topup.Application.Features.Topup.Commands;
 using PSP.Topup.Domain.Repositories;
 
-namespace PSP.Topup.Application.Commands.CreateTopup;
+namespace PSP.Topup.Application.Features.Topup.Handlers;
 
 public sealed class CreateTopupCommandHandler
     : IRequestHandler<CreateTopupCommand, Guid>

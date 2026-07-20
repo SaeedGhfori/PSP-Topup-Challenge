@@ -1,4 +1,4 @@
-using PSP.Entities;
+using PSP.Topup.Domain.Entities;
 
 namespace PSP.Topup.Domain.Repositories;
 

@@ -1,4 +1,4 @@
-namespace PSP.Common;
+namespace PSP.Topup.Domain.Common;
 
 /// <summary>
 /// Base aggregate root.

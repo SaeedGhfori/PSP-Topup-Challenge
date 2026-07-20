@@ -1,4 +1,4 @@
-namespace PSP.Enums;
+namespace PSP.Topup.Domain.Enums;
 
 /// <summary>
 /// Represents the current state of a topup transaction.

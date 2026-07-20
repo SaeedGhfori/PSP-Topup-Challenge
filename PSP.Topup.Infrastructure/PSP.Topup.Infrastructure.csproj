@@ -1,26 +1,27 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net10.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <RootNamespace>PSP.Topup.Infrastructure</RootNamespace>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\PSP.Contracts\PSP.Contracts.csproj" />
-    <ProjectReference Include="..\PSP.SharedKernel\PSP.SharedKernel.csproj" />
-    <ProjectReference Include="..\PSP.Topup.Application\PSP.Topup.Application.csproj" />
-    <ProjectReference Include="..\PSP.Topup.Domain\PSP.Topup.Domain.csproj" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\PSP.Contracts\PSP.Contracts.csproj" />
+        <ProjectReference Include="..\PSP.SharedKernel\PSP.SharedKernel.csproj" />
+        <ProjectReference Include="..\PSP.Topup.Application\PSP.Topup.Application.csproj" />
+        <ProjectReference Include="..\PSP.Topup.Domain\PSP.Topup.Domain.csproj" />
+    </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Messaging\" />
-    <Folder Include="ExternalServices\" />
-    <Folder Include="Logging\" />
-    <Folder Include="Caching\" />
-    <Folder Include="Options\" />
-    <Folder Include="Resilience\" />
-    <Folder Include="Persistence\" />
-  </ItemGroup>
+    <ItemGroup>
+        <Folder Include="Messaging\" />
+        <Folder Include="ExternalServices\" />
+        <Folder Include="Logging\" />
+        <Folder Include="Caching\" />
+        <Folder Include="Options\" />
+        <Folder Include="Resilience\" />
+        <Folder Include="Persistence\" />
+    </ItemGroup>
 
 </Project>

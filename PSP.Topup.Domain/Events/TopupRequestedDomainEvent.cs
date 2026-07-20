@@ -1,6 +1,6 @@
-using PSP.Common;
+using PSP.Topup.Domain.Common;
 
-namespace PSP.Events;
+namespace PSP.Topup.Domain.Events;
 
 /// <summary>
 /// Raised when a topup transaction is created.

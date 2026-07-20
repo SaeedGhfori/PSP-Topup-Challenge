@@ -1,9 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 
-using PSP.Common;
+using PSP.Topup.Domain.Common;
 
-namespace PSP.Interceptors;
+namespace PSP.Topup.Persistence.Interceptors;
 
 public sealed class AuditInterceptor : SaveChangesInterceptor
 {

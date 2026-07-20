@@ -1,9 +1,9 @@
-using PSP.Common;
-using PSP.Enums;
 using PSP.Events;
-using PSP.ValueObjects;
+using PSP.Topup.Domain.Common;
+using PSP.Topup.Domain.Enums;
+using PSP.Topup.Domain.ValueObjects;
 
-namespace PSP.Entities;
+namespace PSP.Topup.Domain.Entities;
 
 /// <summary>
 /// Represents a top-up transaction aggregate.

@@ -1,4 +1,4 @@
-namespace PSP.ValueObjects;
+namespace PSP.Topup.Domain.ValueObjects;
 
 public sealed record Money
 {

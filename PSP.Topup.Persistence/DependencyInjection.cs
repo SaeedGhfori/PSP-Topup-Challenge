@@ -1,13 +1,16 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using PSP.Interceptors;
+
 using PSP.Topup.Domain.Common;
 using PSP.Topup.Domain.Repositories;
+using PSP.Topup.Persistence.Context;
+using PSP.Topup.Persistence.Interceptors;
 using PSP.Topup.Persistence.Repositories;
 using PSP.Topup.Persistence.UnitOfWorks;
 
-namespace PSP.Topup.Persistence.DependencyInjection;
+
+namespace PSP.Topup.Persistence;
 
 public static class DependencyInjection
 {

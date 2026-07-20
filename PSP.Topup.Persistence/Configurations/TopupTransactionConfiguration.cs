@@ -1,9 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-using PSP.Entities;
+using PSP.Topup.Domain.Entities;
 
-namespace PSP.Configurations;
+namespace PSP.Topup.Persistence.Configurations;
 
 public sealed class TopupTransactionConfiguration
     : IEntityTypeConfiguration<TopupTransaction>

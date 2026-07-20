@@ -1,10 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net10.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <RootNamespace>PSP.Topup.Application</RootNamespace>
+    </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="MediatR" />
@@ -13,29 +14,30 @@
         <PackageReference Include="Mapster" />
         <PackageReference Include="Mapster.DependencyInjection" />
     </ItemGroup>
-    
-  <ItemGroup>
-    <ProjectReference Include="..\PSP.Contracts\PSP.Contracts.csproj" />
-    <ProjectReference Include="..\PSP.SharedKernel\PSP.SharedKernel.csproj" />
-    <ProjectReference Include="..\PSP.Topup.Domain\PSP.Topup.Domain.csproj" />
-  </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Abstractions\Authentication\" />
-    <Folder Include="Abstractions\Caching\" />
-    <Folder Include="Abstractions\Clock\" />
-    <Folder Include="Abstractions\Messaging\" />
-    <Folder Include="Abstractions\Services\" />
-    <Folder Include="Behaviors\Logging\" />
-    <Folder Include="Behaviors\Idempotency\" />
-    <Folder Include="Behaviors\Transaction\" />
-    <Folder Include="Behaviors\Performance\" />
-    <Folder Include="Behaviors\Validation\" />
-    <Folder Include="Features\Topup\Commands\CreateTopup\" />
-    <Folder Include="Interfaces\" />
-    <Folder Include="Mapping\" />
-    <Folder Include="Features\Topup\Events\" />
-    <Folder Include="Features\Topup\Queries\" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\PSP.Contracts\PSP.Contracts.csproj" />
+        <ProjectReference Include="..\PSP.SharedKernel\PSP.SharedKernel.csproj" />
+        <ProjectReference Include="..\PSP.Topup.Domain\PSP.Topup.Domain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="Abstractions\Authentication\" />
+        <Folder Include="Abstractions\Caching\" />
+        <Folder Include="Abstractions\Clock\" />
+        <Folder Include="Abstractions\Messaging\" />
+        <Folder Include="Abstractions\Persistence\" />
+        <Folder Include="Abstractions\Services\" />
+        <Folder Include="Behaviors\Logging\" />
+        <Folder Include="Behaviors\Idempotency\" />
+        <Folder Include="Behaviors\Transaction\" />
+        <Folder Include="Behaviors\Performance\" />
+        <Folder Include="Behaviors\Validation\" />
+        <Folder Include="Features\Topup\Commands\CreateTopup\" />
+        <Folder Include="Interfaces\" />
+        <Folder Include="Mapping\" />
+        <Folder Include="Features\Topup\Events\" />
+        <Folder Include="Features\Topup\Queries\" />
+    </ItemGroup>
 
 </Project>

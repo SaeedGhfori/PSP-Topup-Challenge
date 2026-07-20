@@ -1,6 +1,6 @@
 using MediatR;
 
-namespace PSP.Topup.Application.Commands.CreateTopup;
+namespace PSP.Topup.Application.Features.Topup.Commands;
 
 /// <summary>
 /// Creates a new top-up transaction.

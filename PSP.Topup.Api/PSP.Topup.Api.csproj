@@ -4,6 +4,7 @@
         <TargetFramework>net10.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
+        <RootNamespace>PSP.Topup.Api</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
@@ -25,6 +26,7 @@
       <ProjectReference Include="..\PSP.SharedKernel\PSP.SharedKernel.csproj" />
       <ProjectReference Include="..\PSP.Topup.Application\PSP.Topup.Application.csproj" />
       <ProjectReference Include="..\PSP.Topup.Infrastructure\PSP.Topup.Infrastructure.csproj" />
+      <ProjectReference Include="..\PSP.Topup.Persistence\PSP.Topup.Persistence.csproj" />
     </ItemGroup>
 
 </Project>
