@@ -1,7 +1,4 @@
-using PSP.Topup.Infrastructure.Contracts.Requests;
-using PSP.Topup.Infrastructure.Contracts.Responses;
-
-namespace PSP.Topup.Infrastructure.Clients;
+namespace PSP.Topup.Application.Contracts.Mci;
 
 public interface IMciClient
 {

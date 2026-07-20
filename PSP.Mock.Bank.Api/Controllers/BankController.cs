@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-using PSP.Mock.Bank.Api.Contracts.Requests;
+using PSP.Mock.Bank.Api.Contracts;
 using PSP.Mock.Bank.Api.Services;
 
 namespace PSP.Mock.Bank.Api.Controllers;

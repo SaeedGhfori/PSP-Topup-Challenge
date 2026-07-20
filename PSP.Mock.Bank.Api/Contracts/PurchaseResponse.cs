@@ -1,4 +1,4 @@
-namespace PSP.Mock.Bank.Api.Contracts.Responses;
+namespace PSP.Mock.Bank.Api.Contracts;
 
 public sealed record PurchaseResponse
 (

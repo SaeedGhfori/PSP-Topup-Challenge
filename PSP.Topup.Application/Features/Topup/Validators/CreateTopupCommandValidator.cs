@@ -1,8 +1,6 @@
 using FluentValidation;
 
-using PSP.Topup.Application.Features.Topup.Commands;
-
-namespace PSP.Topup.Application.Features.Topup.Validators;
+namespace PSP.Topup.Application.Features.Topup.Commands;
 
 public sealed class CreateTopupCommandValidator
     : AbstractValidator<CreateTopupCommand>
@@ -12,7 +10,7 @@ public sealed class CreateTopupCommandValidator
         RuleFor(x => x.PhoneNumber)
             .NotEmpty()
             .Length(11)
-            .Matches(@"^09\d{9}$");
+            .Matches("^09\\d{9}$");
 
         RuleFor(x => x.Amount)
             .GreaterThan(0);

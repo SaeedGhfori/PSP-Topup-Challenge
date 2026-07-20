@@ -1,35 +1,50 @@
 using MediatR;
-
+using Microsoft.Extensions.Logging;
+using PSP.Topup.Application.Contracts.Mci;
 using PSP.Topup.Application.Features.Topup.Commands;
 using PSP.Topup.Domain.Common;
 using PSP.Topup.Domain.Entities;
 using PSP.Topup.Domain.Enums;
 using PSP.Topup.Domain.Repositories;
 
+namespace PSP.Topup.Application.Features.Topup.Handlers;
+
 public sealed class CreateTopupCommandHandler
     : IRequestHandler<CreateTopupCommand, Guid>
 {
     private readonly ITopupRepository _repository;
     private readonly IUnitOfWork _unitOfWork;
+    private readonly IMciClient _mciClient;
+    private readonly ILogger<CreateTopupCommandHandler> _logger;
 
     public CreateTopupCommandHandler(
         ITopupRepository repository,
-        IUnitOfWork unitOfWork)
+        IUnitOfWork unitOfWork,
+        IMciClient mciClient,
+        ILogger<CreateTopupCommandHandler> logger)
     {
         _repository = repository;
         _unitOfWork = unitOfWork;
+        _mciClient = mciClient;
+        _logger = logger;
     }
 
     public async Task<Guid> Handle(
         CreateTopupCommand request,
         CancellationToken cancellationToken)
     {
-        var exists = await _repository.GetByIdempotencyKeyAsync(
+        var duplicate = await _repository.GetByIdempotencyKeyAsync(
             request.IdempotencyKey,
             cancellationToken);
 
-        if (exists is not null)
-            return exists.Id;
+        if (duplicate is not null)
+        {
+            _logger.LogInformation(
+                "Duplicate topup request. IdempotencyKey:{Key}",
+                request.IdempotencyKey);
+
+            return duplicate.Id;
+        }
 
         var transaction = TopupTransaction.Create(
             PhoneNumber.Create(request.PhoneNumber),
@@ -41,8 +56,28 @@ public sealed class CreateTopupCommandHandler
             transaction,
             cancellationToken);
 
-        await _unitOfWork.SaveChangesAsync(
+        var response = await _mciClient.TopupAsync(
+            new MciTopupRequest(
+                request.PhoneNumber,
+                request.Amount,
+                transaction.Id.ToString()),
             cancellationToken);
+
+        if (response.Success)
+        {
+            transaction.MarkSucceeded(response.ReferenceNumber);
+        }
+        else
+        {
+            transaction.MarkFailed(response.Message);
+        }
+
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
+
+        _logger.LogInformation(
+            "Topup finished. Transaction:{TransactionId} Status:{Status}",
+            transaction.Id,
+            transaction.Status);
 
         return transaction.Id;
     }

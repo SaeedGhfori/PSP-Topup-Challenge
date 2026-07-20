@@ -1,4 +1,4 @@
-namespace PSP.Mock.Bank.Api.Contracts.Requests;
+namespace PSP.Mock.Bank.Api.Contracts;
 
 public sealed record ConfirmationRequest
 (

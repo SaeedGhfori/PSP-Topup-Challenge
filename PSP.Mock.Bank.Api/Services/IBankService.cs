@@ -1,5 +1,4 @@
-using PSP.Mock.Bank.Api.Contracts.Requests;
-using PSP.Mock.Bank.Api.Contracts.Responses;
+using PSP.Mock.Bank.Api.Contracts;
 
 namespace PSP.Mock.Bank.Api.Services;
 

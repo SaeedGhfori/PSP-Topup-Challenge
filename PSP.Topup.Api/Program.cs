@@ -3,6 +3,8 @@ using PSP.Topup.Application;
 using PSP.Topup.Infrastructure;
 using PSP.Topup.Persistence;
 
+using Scalar.AspNetCore;
+
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,6 +23,7 @@ builder.Services.AddInfrastructure(builder.Configuration);
 var app = builder.Build();
 
 app.MapOpenApi();
+app.MapScalarApiReference();
 app.MapTopupEndpoints();
 app.MapGet("/", () => Results.Ok("PSP Topup Service"));
 

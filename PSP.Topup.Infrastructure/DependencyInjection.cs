@@ -2,6 +2,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 
+using PSP.Topup.Application.Contracts.Mci;
 using PSP.Topup.Infrastructure.Clients;
 using PSP.Topup.Infrastructure.Configuration;
 

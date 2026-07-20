@@ -1,4 +1,4 @@
-namespace PSP.Topup.Infrastructure.Contracts.Responses;
+namespace PSP.Topup.Application.Contracts.Mci;
 
 public sealed record MciTopupResponse(
     bool Success,
