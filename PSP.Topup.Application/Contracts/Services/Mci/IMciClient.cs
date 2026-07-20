@@ -1,4 +1,4 @@
-namespace PSP.Topup.Application.Contracts.Mci;
+namespace PSP.Topup.Application.Contracts.Services.Mci;
 
 public interface IMciClient
 {

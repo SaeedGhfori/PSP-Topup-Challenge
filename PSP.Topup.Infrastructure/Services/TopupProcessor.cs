@@ -2,6 +2,7 @@ using Microsoft.Extensions.Logging;
 
 using PSP.Topup.Application.Contracts.Mci;
 using PSP.Topup.Application.Contracts.Services;
+using PSP.Topup.Application.Contracts.Services.Mci;
 using PSP.Topup.Domain.Common;
 using PSP.Topup.Domain.Repositories;
 
