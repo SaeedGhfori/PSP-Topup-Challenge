@@ -1,10 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using MassTransit;
 
-namespace PSP.Contracts
+using PSP.Messaging.Abstractions;
+
+namespace PSP.Messaging.Services;
+
+public sealed class MassTransitMessageBus
+    : IMessageBus
 {
-    internal class MassTransitMessageBus
+    private readonly IPublishEndpoint _publishEndpoint;
+
+    public MassTransitMessageBus(
+        IPublishEndpoint publishEndpoint)
     {
+        _publishEndpoint = publishEndpoint;
+    }
+
+    public Task PublishAsync<T>(
+        T message,
+        CancellationToken cancellationToken = default)
+        where T : class
+    {
+        return _publishEndpoint.Publish(
+            message,
+            cancellationToken);
     }
 }

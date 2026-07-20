@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+namespace PSP.Messaging.Contracts;
 
-namespace PSP.Consumers
+public interface IIntegrationEvent
 {
-    internal class IIntegrationEvent
-    {
-    }
+    Guid EventId { get; }
+
+    DateTime OccurredOnUtc { get; }
 }

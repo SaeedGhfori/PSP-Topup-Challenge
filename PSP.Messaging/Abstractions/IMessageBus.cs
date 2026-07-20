@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+namespace PSP.Messaging.Abstractions;
 
-namespace PSP.Abstractions
+public interface IMessageBus
 {
-    internal class IMessageBus
-    {
-    }
+    Task PublishAsync<T>(
+        T message,
+        CancellationToken cancellationToken = default)
+        where T : class;
 }

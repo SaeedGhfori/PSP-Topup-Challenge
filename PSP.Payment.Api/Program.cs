@@ -1,3 +1,4 @@
+using PSP.Messaging;
 using PSP.Payment.Api.Endpoints;
 using PSP.Payment.Api.Extensions;
 using PSP.Payment.Application;
@@ -14,6 +15,8 @@ builder.Host.UseSerilog((context, logger) =>
 {
     logger.ReadFrom.Configuration(context.Configuration);
 });
+
+builder.Services.AddMessaging(builder.Configuration);
 
 builder.Services.AddOpenApi();
 
