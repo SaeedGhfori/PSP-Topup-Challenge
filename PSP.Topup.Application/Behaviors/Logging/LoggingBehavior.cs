@@ -2,7 +2,7 @@ using MediatR;
 
 using Microsoft.Extensions.Logging;
 
-namespace PSP.Topup.Application.Behaviors;
+namespace PSP.Topup.Application.Behaviors.Logging;
 
 public sealed class LoggingBehavior<TRequest, TResponse>
     : IPipelineBehavior<TRequest, TResponse>

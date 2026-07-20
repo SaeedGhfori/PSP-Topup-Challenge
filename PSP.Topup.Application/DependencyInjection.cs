@@ -4,7 +4,8 @@ using MediatR;
 
 using Microsoft.Extensions.DependencyInjection;
 
-using PSP.Topup.Application.Behaviors;
+using PSP.Topup.Application.Behaviors.Logging;
+using PSP.Topup.Application.Behaviors.Validation;
 
 namespace PSP.Topup.Application;
 

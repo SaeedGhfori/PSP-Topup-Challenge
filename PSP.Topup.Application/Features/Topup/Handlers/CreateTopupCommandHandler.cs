@@ -2,6 +2,7 @@ using MediatR;
 
 using Microsoft.Extensions.Logging;
 
+using PSP.Events;
 using PSP.Topup.Application.Contracts.Messaging;
 using PSP.Topup.Application.Features.Topup.Commands;
 using PSP.Topup.Application.Features.Topup.DTOs;

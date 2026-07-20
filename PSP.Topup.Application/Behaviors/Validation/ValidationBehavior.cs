@@ -2,7 +2,7 @@ using FluentValidation;
 
 using MediatR;
 
-namespace PSP.Topup.Application.Behaviors;
+namespace PSP.Topup.Application.Behaviors.Validation;
 
 public sealed class ValidationBehavior<TRequest, TResponse>
     : IPipelineBehavior<TRequest, TResponse>

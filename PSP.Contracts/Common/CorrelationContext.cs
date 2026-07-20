@@ -1,4 +1,4 @@
-namespace PSP.Contracts.Common;
+namespace PSP.Common;
 
 public sealed record CorrelationContext(
     string CorrelationId,

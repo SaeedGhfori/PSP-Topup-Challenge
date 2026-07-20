@@ -31,6 +31,7 @@
         <Folder Include="Behaviors\Idempotency\" />
         <Folder Include="Behaviors\Transaction\" />
         <Folder Include="Behaviors\Performance\" />
+        <Folder Include="Features\Topup\Events\" />
         <Folder Include="Interfaces\" />
         <Folder Include="Mapping\" />
         <Folder Include="Features\Topup\Queries\" />

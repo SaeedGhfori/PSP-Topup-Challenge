@@ -1,6 +1,6 @@
-using PSP.Contracts.Messaging;
+using PSP.Messaging;
 
-namespace PSP.Contracts.IntegrationEvents;
+namespace PSP.Events;
 
 public sealed record TopupCompletedIntegrationEvent(
     Guid TransactionId,
