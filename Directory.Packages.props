@@ -2,7 +2,7 @@
     <PropertyGroup>
         <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
     </PropertyGroup>
-    
+
     <ItemGroup>
     </ItemGroup>
     <ItemGroup>
@@ -14,5 +14,9 @@
         <PackageVersion Include="MediatR" Version="13.1.0" />
         <PackageVersion Include="FluentValidation" Version="12.1.0" />
         <PackageVersion Include="FluentValidation.DependencyInjectionExtensions" Version="12.1.0" />
+        <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="10.0.0" />
+        <PackageVersion Include="Microsoft.EntityFrameworkCore.Relational" Version="10.0.0" />
+        <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.0" />
+        <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.0" />
     </ItemGroup>
 </Project>
