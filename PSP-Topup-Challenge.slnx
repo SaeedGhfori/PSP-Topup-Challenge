@@ -32,7 +32,13 @@
     <Project Path="PSP.Mock.MCI.Api/PSP.Mock.MCI.Api.csproj" Id="7216f0d8-9904-4e8c-b405-bed5d6413400" />
   </Folder>
   <Folder Name="/src/Services/" />
-  <Folder Name="/src/Services/Payment/" />
+  <Folder Name="/src/Services/Payment/">
+    <Project Path="PSP.Payment.Api/PSP.Payment.Api.csproj" Id="27c58d5e-632c-42fb-9daa-f41129c9b33e" />
+    <Project Path="PSP.Payment.Application/PSP.Payment.Application.csproj" Id="c3d71df6-280e-4ee3-8e28-ea9d0b122df8" />
+    <Project Path="PSP.Payment.Domain/PSP.Payment.Domain.csproj" Id="dff61fe7-e5dc-4a44-bb83-ca0dc173d6ec" />
+    <Project Path="PSP.Payment.Infrastructure/PSP.Payment.Infrastructure.csproj" Id="07bb9578-2a0e-4820-8738-e08d15dedc29" />
+    <Project Path="PSP.Payment.Persistence/PSP.Payment.Persistence.csproj" Id="5c65e5ec-715f-42af-ae45-11d51835dce0" />
+  </Folder>
   <Folder Name="/src/Services/Topup/">
     <Project Path="PSP.Topup.Api/PSP.Topup.Api.csproj" Id="0c50f099-1a5f-4148-ab05-dcc9256b65c1" />
     <Project Path="PSP.Topup.Application/PSP.Topup.Application.csproj" Id="4ae90d5b-921f-441a-bb80-63a15739b54a" />

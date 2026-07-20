@@ -33,7 +33,6 @@
         <Folder Include="Behaviors\Transaction\" />
         <Folder Include="Behaviors\Performance\" />
         <Folder Include="Behaviors\Validation\" />
-        <Folder Include="Features\Topup\Commands\CreateTopup\" />
         <Folder Include="Interfaces\" />
         <Folder Include="Mapping\" />
         <Folder Include="Features\Topup\Events\" />
