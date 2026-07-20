@@ -8,6 +8,7 @@
 
     <ItemGroup>
         <PackageReference Include="MediatR" />
+        <PackageReference Include="FluentValidation" />
         <PackageReference Include="FluentValidation.DependencyInjectionExtensions" />
     </ItemGroup>
     
@@ -18,15 +19,19 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Topup\Commands\" />
-    <Folder Include="Features\Topup\" />
-    <Folder Include="Handlers\" />
-    <Folder Include="Behaviors\" />
-    <Folder Include="Features\Topup\DTOs\" />
+    <Folder Include="Abstractions\Authentication\" />
+    <Folder Include="Abstractions\Caching\" />
+    <Folder Include="Abstractions\Clock\" />
+    <Folder Include="Abstractions\Messaging\" />
+    <Folder Include="Abstractions\Services\" />
+    <Folder Include="Behaviors\Logging\" />
+    <Folder Include="Behaviors\Idempotency\" />
+    <Folder Include="Behaviors\Transaction\" />
+    <Folder Include="Behaviors\Performance\" />
+    <Folder Include="Behaviors\Validation\" />
     <Folder Include="Interfaces\" />
     <Folder Include="Mapping\" />
     <Folder Include="Features\Topup\Events\" />
-    <Folder Include="Features\Topup\Validators\" />
     <Folder Include="Features\Topup\Queries\" />
   </ItemGroup>
 

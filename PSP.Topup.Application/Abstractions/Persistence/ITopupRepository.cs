@@ -1,21 +1,21 @@
-using PSP.Topup.Domain.TopupAggregate;
+using PSP.Topup.Domain.Entities;
 
-namespace PSP.Topup.Application.Abstractions.Persistence;
+namespace PSP.Topup.Domain.Repositories;
 
 public interface ITopupRepository
 {
     Task AddAsync(
         TopupTransaction transaction,
-        CancellationToken cancellationToken = default);
+        CancellationToken cancellationToken);
 
     Task<TopupTransaction?> GetByIdAsync(
         Guid id,
-        CancellationToken cancellationToken = default);
+        CancellationToken cancellationToken);
 
-    Task<TopupTransaction?> GetByIdempotencyKeyAsync(
+    Task<bool> ExistsByIdempotencyKeyAsync(
         string idempotencyKey,
-        CancellationToken cancellationToken = default);
+        CancellationToken cancellationToken);
 
     Task SaveChangesAsync(
-        CancellationToken cancellationToken = default);
+        CancellationToken cancellationToken);
 }

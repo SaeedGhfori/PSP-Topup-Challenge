@@ -1,7 +1,19 @@
+using FluentValidation;
 
-namespace PSP
+using Microsoft.Extensions.DependencyInjection;
+
+namespace PSP.Topup.Application;
+
+public static class DependencyInjection
 {
-    internal class DependencyInjection
+    public static IServiceCollection AddApplication(
+        this IServiceCollection services)
     {
+        services.AddMediatR(cfg =>
+            cfg.RegisterServicesFromAssembly(typeof(DependencyInjection).Assembly));
+
+        services.AddValidatorsFromAssembly(typeof(DependencyInjection).Assembly);
+
+        return services;
     }
 }
