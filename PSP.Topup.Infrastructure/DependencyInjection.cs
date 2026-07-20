@@ -19,18 +19,22 @@ public static class DependencyInjection
         services.Configure<MciOptions>(
             configuration.GetSection(MciOptions.SectionName));
 
-        services.AddHttpClient<IMciClient, MciClient>(
-            (provider, client) =>
-            {
-                var options =
-                    provider.GetRequiredService<IOptions<MciOptions>>().Value;
+        services.AddTransient<LoggingHandler>();
 
-                client.BaseAddress =
-                    new Uri(options.BaseUrl);
+        services.AddTransient<CorrelationIdHandler>();
 
-                client.Timeout =
-                    TimeSpan.FromSeconds(options.Timeout);
-            });
+        services.AddHttpClient<IMciClient, MciClient>((provider, client) =>
+        {
+            var options =
+                provider.GetRequiredService<IOptions<MciOptions>>().Value;
+
+            client.BaseAddress =
+                new Uri(options.BaseUrl);
+
+        })
+        .AddHttpMessageHandler<CorrelationIdHandler>()
+        .AddHttpMessageHandler<LoggingHandler>()
+        .AddStandardResilienceHandler();
 
         services.AddScoped<ITopupProcessor, TopupProcessor>();
 
