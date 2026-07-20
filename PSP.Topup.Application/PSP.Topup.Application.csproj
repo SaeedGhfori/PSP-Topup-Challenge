@@ -6,6 +6,11 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+    <ItemGroup>
+        <PackageReference Include="MediatR" />
+        <PackageReference Include="FluentValidation.DependencyInjectionExtensions" />
+    </ItemGroup>
+    
   <ItemGroup>
     <ProjectReference Include="..\PSP.Contracts\PSP.Contracts.csproj" />
     <ProjectReference Include="..\PSP.SharedKernel\PSP.SharedKernel.csproj" />
@@ -13,15 +18,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\" />
+    <Folder Include="Features\Topup\Commands\" />
+    <Folder Include="Features\Topup\" />
     <Folder Include="Handlers\" />
     <Folder Include="Behaviors\" />
-    <Folder Include="DTOs\" />
+    <Folder Include="Features\Topup\DTOs\" />
     <Folder Include="Interfaces\" />
     <Folder Include="Mapping\" />
-    <Folder Include="Events\" />
-    <Folder Include="Validators\" />
-    <Folder Include="Queries\" />
+    <Folder Include="Features\Topup\Events\" />
+    <Folder Include="Features\Topup\Validators\" />
+    <Folder Include="Features\Topup\Queries\" />
   </ItemGroup>
 
 </Project>
