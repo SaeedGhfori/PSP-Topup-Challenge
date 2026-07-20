@@ -10,6 +10,8 @@
         <PackageReference Include="MediatR" />
         <PackageReference Include="FluentValidation" />
         <PackageReference Include="FluentValidation.DependencyInjectionExtensions" />
+        <PackageReference Include="Mapster" />
+        <PackageReference Include="Mapster.DependencyInjection" />
     </ItemGroup>
     
   <ItemGroup>
@@ -29,6 +31,7 @@
     <Folder Include="Behaviors\Transaction\" />
     <Folder Include="Behaviors\Performance\" />
     <Folder Include="Behaviors\Validation\" />
+    <Folder Include="Features\Topup\Commands\CreateTopup\" />
     <Folder Include="Interfaces\" />
     <Folder Include="Mapping\" />
     <Folder Include="Features\Topup\Events\" />

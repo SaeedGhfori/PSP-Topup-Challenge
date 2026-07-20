@@ -1,12 +1,13 @@
 using MediatR;
 
-using PSP.Features.Topup.DTOs;
+namespace PSP.Topup.Application.Commands.CreateTopup;
 
-namespace PSP.Features.Topup.Commands;
-
+/// <summary>
+/// Creates a new top-up transaction.
+/// </summary>
 public sealed record CreateTopupCommand(
     string PhoneNumber,
     decimal Amount,
-    int Operator,
+    int OperatorId,
     string IdempotencyKey)
-    : IRequest<CreateTopupResponse>;
+    : IRequest<Guid>;

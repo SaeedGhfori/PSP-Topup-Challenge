@@ -1,8 +1,6 @@
 using FluentValidation;
 
-using PSP.Features.Topup.Commands;
-
-namespace PSP.Features.Topup.Validators;
+namespace PSP.Topup.Application.Commands.CreateTopup;
 
 public sealed class CreateTopupCommandValidator
     : AbstractValidator<CreateTopupCommand>
@@ -17,10 +15,11 @@ public sealed class CreateTopupCommandValidator
         RuleFor(x => x.Amount)
             .GreaterThan(0);
 
-        RuleFor(x => x.IdempotencyKey)
-            .NotEmpty();
-
-        RuleFor(x => x.Operator)
+        RuleFor(x => x.OperatorId)
             .InclusiveBetween(1, 3);
+
+        RuleFor(x => x.IdempotencyKey)
+            .NotEmpty()
+            .MaximumLength(64);
     }
 }
