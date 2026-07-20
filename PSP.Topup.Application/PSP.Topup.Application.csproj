@@ -28,7 +28,6 @@
         <Folder Include="Abstractions\Messaging\" />
         <Folder Include="Abstractions\Persistence\" />
         <Folder Include="Abstractions\Services\" />
-        <Folder Include="Behaviors\Logging\" />
         <Folder Include="Behaviors\Idempotency\" />
         <Folder Include="Behaviors\Transaction\" />
         <Folder Include="Behaviors\Performance\" />
