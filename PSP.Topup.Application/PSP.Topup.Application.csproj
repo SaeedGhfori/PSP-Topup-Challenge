@@ -33,7 +33,6 @@
         <Folder Include="Behaviors\Performance\" />
         <Folder Include="Interfaces\" />
         <Folder Include="Mapping\" />
-        <Folder Include="Features\Topup\Events\" />
         <Folder Include="Features\Topup\Queries\" />
     </ItemGroup>
 

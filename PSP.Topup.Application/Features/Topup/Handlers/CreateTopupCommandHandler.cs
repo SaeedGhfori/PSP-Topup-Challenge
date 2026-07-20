@@ -2,7 +2,7 @@ using MediatR;
 
 using Microsoft.Extensions.Logging;
 
-using PSP.Topup.Application.Contracts.Services;
+using PSP.Topup.Application.Contracts.Messaging;
 using PSP.Topup.Application.Features.Topup.Commands;
 using PSP.Topup.Application.Features.Topup.DTOs;
 using PSP.Topup.Domain.Common;
@@ -17,18 +17,18 @@ public sealed class CreateTopupCommandHandler
 {
     private readonly ITopupRepository _repository;
     private readonly IUnitOfWork _unitOfWork;
-    private readonly ITopupProcessor _topupProcessor;
+    private readonly IMessageBus _messageBus;
     private readonly ILogger<CreateTopupCommandHandler> _logger;
 
     public CreateTopupCommandHandler(
         ITopupRepository repository,
         IUnitOfWork unitOfWork,
-        ITopupProcessor topupProcessor,
+        IMessageBus messageBus,
         ILogger<CreateTopupCommandHandler> logger)
     {
         _repository = repository;
         _unitOfWork = unitOfWork;
-        _topupProcessor = topupProcessor;
+        _messageBus = messageBus;
         _logger = logger;
     }
 
@@ -36,9 +36,10 @@ public sealed class CreateTopupCommandHandler
         CreateTopupCommand request,
         CancellationToken cancellationToken)
     {
-        var duplicate = await _repository.GetByIdempotencyKeyAsync(
-            request.IdempotencyKey,
-            cancellationToken);
+        var duplicate =
+            await _repository.GetByIdempotencyKeyAsync(
+                request.IdempotencyKey,
+                cancellationToken);
 
         if (duplicate is not null)
         {
@@ -60,12 +61,17 @@ public sealed class CreateTopupCommandHandler
         await _unitOfWork.SaveChangesAsync(
             cancellationToken);
 
-        await _topupProcessor.ProcessAsync(
-            transaction.Id,
+        await _messageBus.PublishAsync(
+            new TopupRequestedIntegrationEvent(
+                transaction.Id,
+                request.PhoneNumber,
+                request.Amount,
+                request.OperatorId,
+                request.IdempotencyKey),
             cancellationToken);
 
         _logger.LogInformation(
-            "Topup Request Accepted. TransactionId:{Id}",
+            "Topup Request Published. TransactionId:{Id}",
             transaction.Id);
 
         return new CreateTopupResponse(
