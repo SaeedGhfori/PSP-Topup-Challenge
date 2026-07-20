@@ -1,3 +1,4 @@
+using PSP.Messaging;
 using PSP.Topup.Api.Endpoints;
 using PSP.Topup.Api.Extensions;
 using PSP.Topup.Application;
@@ -14,6 +15,8 @@ builder.Host.UseSerilog((context, logger) =>
 {
     logger.ReadFrom.Configuration(context.Configuration);
 });
+
+builder.Services.AddMessaging(builder.Configuration);
 
 builder.Services.AddOpenApi();
 

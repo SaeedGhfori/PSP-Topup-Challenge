@@ -4,9 +4,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 using PSP.Messaging.Abstractions;
-using PSP.Messaging.Contracts;
 
-namespace PSP.Messaging.Extensions;
+namespace PSP.Messaging;
 
 public static class DependencyInjection
 {
@@ -14,25 +13,22 @@ public static class DependencyInjection
         this IServiceCollection services,
         IConfiguration configuration)
     {
+        var options =
+            configuration.GetSection(RabbitMqOptions.SectionName)
+                .Get<RabbitMqOptions>()!;
+
         services.AddMassTransit(x =>
         {
-            x.SetKebabCaseEndpointNameFormatter();
-
             x.UsingRabbitMq((context, cfg) =>
             {
                 cfg.Host(
-                    configuration["RabbitMq:Host"],
+                    options.Host,
                     "/",
                     h =>
                     {
-                        h.Username(
-                            configuration["RabbitMq:Username"]);
-
-                        h.Password(
-                            configuration["RabbitMq:Password"]);
+                        h.Username(options.Username);
+                        h.Password(options.Password);
                     });
-
-                cfg.ConfigureEndpoints(context);
             });
         });
 
