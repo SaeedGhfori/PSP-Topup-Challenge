@@ -1,20 +1,18 @@
 using PSP.Topup.Domain.Common;
 using PSP.Topup.Persistence.Context;
 
-namespace PSP.Topup.Persistence.UnitOfWorks;
-
 public sealed class UnitOfWork : IUnitOfWork
 {
-    private readonly TopupDbContext _dbContext;
+    private readonly TopupDbContext _context;
 
-    public UnitOfWork(TopupDbContext dbContext)
+    public UnitOfWork(TopupDbContext context)
     {
-        _dbContext = dbContext;
+        _context = context;
     }
 
     public Task<int> SaveChangesAsync(
         CancellationToken cancellationToken = default)
     {
-        return _dbContext.SaveChangesAsync(cancellationToken);
+        return _context.SaveChangesAsync(cancellationToken);
     }
 }
