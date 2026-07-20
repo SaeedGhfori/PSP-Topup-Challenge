@@ -1,7 +1,11 @@
 using MediatR;
+
 using Microsoft.Extensions.Logging;
+
 using PSP.Topup.Application.Contracts.Mci;
 using PSP.Topup.Application.Features.Topup.Commands;
+using PSP.Topup.Application.Features.Topup.DTOs;
+
 using PSP.Topup.Domain.Common;
 using PSP.Topup.Domain.Entities;
 using PSP.Topup.Domain.Enums;
@@ -10,7 +14,7 @@ using PSP.Topup.Domain.Repositories;
 namespace PSP.Topup.Application.Features.Topup.Handlers;
 
 public sealed class CreateTopupCommandHandler
-    : IRequestHandler<CreateTopupCommand, Guid>
+    : IRequestHandler<CreateTopupCommand, CreateTopupResponse>
 {
     private readonly ITopupRepository _repository;
     private readonly IUnitOfWork _unitOfWork;
@@ -29,10 +33,11 @@ public sealed class CreateTopupCommandHandler
         _logger = logger;
     }
 
-    public async Task<Guid> Handle(
+    public async Task<CreateTopupResponse> Handle(
         CreateTopupCommand request,
         CancellationToken cancellationToken)
     {
+        // Idempotency
         var duplicate = await _repository.GetByIdempotencyKeyAsync(
             request.IdempotencyKey,
             cancellationToken);
@@ -40,10 +45,12 @@ public sealed class CreateTopupCommandHandler
         if (duplicate is not null)
         {
             _logger.LogInformation(
-                "Duplicate topup request. IdempotencyKey:{Key}",
+                "Duplicate request detected. IdempotencyKey: {Key}",
                 request.IdempotencyKey);
 
-            return duplicate.Id;
+            return new CreateTopupResponse(
+                duplicate.Id,
+                duplicate.Status.ToString());
         }
 
         var transaction = TopupTransaction.Create(
@@ -65,20 +72,25 @@ public sealed class CreateTopupCommandHandler
 
         if (response.Success)
         {
-            transaction.MarkSucceeded(response.ReferenceNumber);
+            transaction.MarkSucceeded(
+                response.ReferenceNumber);
         }
         else
         {
-            transaction.MarkFailed(response.Message);
+            transaction.MarkFailed(
+                response.Message);
         }
 
-        await _unitOfWork.SaveChangesAsync(cancellationToken);
+        await _unitOfWork.SaveChangesAsync(
+            cancellationToken);
 
         _logger.LogInformation(
-            "Topup finished. Transaction:{TransactionId} Status:{Status}",
+            "Topup completed. TransactionId: {Id}, Status: {Status}",
             transaction.Id,
             transaction.Status);
 
-        return transaction.Id;
+        return new CreateTopupResponse(
+            transaction.Id,
+            transaction.Status.ToString());
     }
 }
