@@ -22,7 +22,11 @@ public static class DependencyInjection
         services.AddDbContext<TopupDbContext>((provider, options) =>
         {
             options.UseSqlServer(
-                configuration.GetConnectionString("DefaultConnection"));
+                configuration.GetConnectionString("DefaultConnection"),
+                sql =>
+                {
+                    sql.MigrationsAssembly(typeof(TopupDbContext).Assembly.FullName);
+                });
 
             options.AddInterceptors(
                 provider.GetRequiredService<AuditInterceptor>());
