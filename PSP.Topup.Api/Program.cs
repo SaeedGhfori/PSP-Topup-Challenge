@@ -1,4 +1,5 @@
 using PSP.Topup.Api.Endpoints;
+using PSP.Topup.Api.Extensions;
 using PSP.Topup.Application;
 using PSP.Topup.Infrastructure;
 using PSP.Topup.Persistence;
@@ -24,6 +25,7 @@ var app = builder.Build();
 
 app.MapOpenApi();
 app.MapScalarApiReference();
+app.UseGlobalException();
 app.MapTopupEndpoints();
 app.MapGet("/", () => Results.Ok("PSP Topup Service"));
 
