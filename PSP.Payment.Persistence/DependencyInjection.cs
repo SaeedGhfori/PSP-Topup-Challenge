@@ -6,6 +6,7 @@ using PSP.Payment.Domain.Common;
 using PSP.Payment.Domain.Repositories;
 using PSP.Payment.Persistence.Context;
 using PSP.Payment.Persistence.Repositories;
+using PSP.Payment.Persistence.UnitOfWorks;
 
 namespace PSP.Payment.Persistence;
 
