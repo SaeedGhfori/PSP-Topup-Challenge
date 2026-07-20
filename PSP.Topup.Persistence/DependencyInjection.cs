@@ -1,12 +1,13 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-
-using PSP.Context;
 using PSP.Interceptors;
-using PSP.Topup.Persistence.Context;
+using PSP.Topup.Domain.Common;
+using PSP.Topup.Domain.Repositories;
+using PSP.Topup.Persistence.Repositories;
+using PSP.Topup.Persistence.UnitOfWorks;
 
-namespace PSP;
+namespace PSP.Topup.Persistence.DependencyInjection;
 
 public static class DependencyInjection
 {
@@ -14,21 +15,20 @@ public static class DependencyInjection
         this IServiceCollection services,
         IConfiguration configuration)
     {
-        services.AddDbContext<TopupDbContext>((sp, options) =>
-        {
-            options.UseNpgsql(
-                configuration.GetConnectionString("Postgres"));
-
-            options.AddInterceptors(
-                sp.GetRequiredService<AuditInterceptor>(),
-                sp.GetRequiredService<PublishDomainEventsInterceptor>());
-        });
-
         services.AddSingleton<AuditInterceptor>();
 
-        services.AddScoped<PublishDomainEventsInterceptor>();
+        services.AddDbContext<TopupDbContext>((provider, options) =>
+        {
+            options.UseSqlServer(
+                configuration.GetConnectionString("DefaultConnection"));
 
+            options.AddInterceptors(
+                provider.GetRequiredService<AuditInterceptor>());
+        });
 
+        services.AddScoped<ITopupRepository, TopupRepository>();
+
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
 
         return services;
     }

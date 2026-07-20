@@ -1,8 +1,18 @@
+using PSP.Entities;
 
+namespace PSP.Topup.Domain.Repositories;
 
-namespace PSP.Repositories
+public interface ITopupRepository
 {
-    internal interface ITopupRepository
-    {
-    }
+    Task AddAsync(
+        TopupTransaction transaction,
+        CancellationToken cancellationToken = default);
+
+    Task<TopupTransaction?> GetByIdAsync(
+        Guid id,
+        CancellationToken cancellationToken = default);
+
+    Task<TopupTransaction?> GetByIdempotencyKeyAsync(
+        string idempotencyKey,
+        CancellationToken cancellationToken = default);
 }
