@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="TopupAggregate\Events\" />
     <Folder Include="TopupAggregate\Exceptions\" />
     <Folder Include="TopupAggregate\Specifications\" />
     <Folder Include="Services\" />
