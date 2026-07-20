@@ -17,6 +17,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\PSP.Contracts\PSP.Contracts.csproj" />
+        <ProjectReference Include="..\PSP.Messaging\PSP.Messaging.csproj" />
         <ProjectReference Include="..\PSP.SharedKernel\PSP.SharedKernel.csproj" />
         <ProjectReference Include="..\PSP.Payment.Domain\PSP.Payment.Domain.csproj" />
     </ItemGroup>

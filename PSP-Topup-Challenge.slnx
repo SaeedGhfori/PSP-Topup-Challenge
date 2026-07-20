@@ -23,6 +23,7 @@
   <Folder Name="/src/BuildingBlocks/">
     <Project Path="D:/Apps/Source Repos/PSP-Topup-Challenge/PSP.SharedKernel/PSP.SharedKernel.csproj" Id="90ce892b-e784-467b-b8b3-be007db419b8" />
     <Project Path="PSP.Contracts/PSP.Contracts.csproj" />
+    <Project Path="PSP.Messaging/PSP.Messaging.csproj" Id="66065185-2cdc-4b36-824b-c5f6b29948b0" />
   </Folder>
   <Folder Name="/src/Gateway/">
     <Project Path="PSP.Gateway.Api/PSP.Gateway.Api.csproj" Id="933e1ece-e380-45bb-979d-dfd0686f519d" />
