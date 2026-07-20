@@ -1,3 +1,5 @@
+using MassTransit;
+
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
@@ -40,6 +42,29 @@ public static class DependencyInjection
 
         services.AddScoped<ITopupProcessor, TopupProcessor>();
         services.AddScoped<IEventPublisher, RabbitMqEventPublisher>();
+
+        services.AddMassTransit(x =>
+        {
+            x.AddConsumer<TopupRequestedConsumer>();
+
+            x.UsingRabbitMq((context, cfg) =>
+            {
+                cfg.Host(
+                    configuration["RabbitMQ:Host"],
+                    h =>
+                    {
+                        h.Username(
+                            configuration["RabbitMQ:Username"]);
+
+                        h.Password(
+                            configuration["RabbitMQ:Password"]);
+                    });
+
+                cfg.ConfigureEndpoints(context);
+            });
+        });
+
+        services.AddScoped<IMessageBus, RabbitMqMessageBus>();
 
         return services;
     }
