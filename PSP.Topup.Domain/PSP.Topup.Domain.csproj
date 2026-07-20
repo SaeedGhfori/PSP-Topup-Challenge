@@ -12,7 +12,6 @@
     <Folder Include="TopupAggregate\Specifications\" />
     <Folder Include="Services\" />
     <Folder Include="Repositories\" />
-    <Folder Include="TopupAggregate\ValueObjects\" />
     <Folder Include="TopupTransaction\" />
   </ItemGroup>
 
