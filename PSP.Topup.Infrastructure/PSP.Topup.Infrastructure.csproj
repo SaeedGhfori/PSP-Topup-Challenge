@@ -16,9 +16,10 @@
 
     <ItemGroup>
         <Folder Include="Messaging\" />
-        <Folder Include="ExternalServices\" />
+        <Folder Include="Services\" />
         <Folder Include="Logging\" />
         <Folder Include="Caching\" />
+        <Folder Include="Exceptions\" />
         <Folder Include="Options\" />
         <Folder Include="Resilience\" />
         <Folder Include="Persistence\" />
