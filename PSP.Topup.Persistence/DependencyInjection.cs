@@ -7,7 +7,6 @@ using PSP.Topup.Domain.Repositories;
 using PSP.Topup.Persistence.Context;
 using PSP.Topup.Persistence.Interceptors;
 using PSP.Topup.Persistence.Repositories;
-using PSP.Topup.Persistence.UnitOfWorks;
 
 
 namespace PSP.Topup.Persistence;
