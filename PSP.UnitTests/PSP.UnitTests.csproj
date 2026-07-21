@@ -8,19 +8,29 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="coverlet.collector" Version="6.0.4" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
-    <PackageReference Include="xunit" Version="2.9.3" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="3.1.4" />
+    <PackageReference Include="coverlet.collector">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="FluentAssertions" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="Moq" />
+    <PackageReference Include="xunit" />
+    <PackageReference Include="xunit.runner.visualstudio">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
     <Using Include="Xunit" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Topup\" />
-    <Folder Include="Payment\" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\PSP.Payment.Domain\PSP.Payment.Domain.csproj" />
+        <ProjectReference Include="..\PSP.Payment.Application\PSP.Payment.Application.csproj" />
+        <ProjectReference Include="..\PSP.Topup.Domain\PSP.Topup.Domain.csproj" />
+        <ProjectReference Include="..\PSP.Topup.Application\PSP.Topup.Application.csproj" />
+    </ItemGroup>
 
 </Project>
