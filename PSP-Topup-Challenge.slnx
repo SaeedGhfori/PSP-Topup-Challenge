@@ -79,5 +79,7 @@
     <Project Path="PSP.Topup.Infrastructure/PSP.Topup.Infrastructure.csproj" Id="9210154e-990b-4207-8c2e-743c4393c41d" />
     <Project Path="PSP.Topup.Persistence/PSP.Topup.Persistence.csproj" Id="d11e6ae4-7ddf-4404-8116-d0f3e8f7bca7" />
   </Folder>
-  <Folder Name="/tests/" />
+  <Folder Name="/tests/">
+    <Project Path="PSP.UnitTests/PSP.UnitTests.csproj" Id="0ccc951a-b1fa-48be-ad2a-8108dfa95dbb" />
+  </Folder>
 </Solution>

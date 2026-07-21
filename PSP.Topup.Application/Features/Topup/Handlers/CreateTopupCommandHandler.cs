@@ -37,32 +37,78 @@ public sealed class CreateTopupCommandHandler
         CreateTopupCommand request,
         CancellationToken cancellationToken)
     {
-        var duplicate =
-            await _repository.GetByIdempotencyKeyAsync(
-                request.IdempotencyKey,
-                cancellationToken);
+        _logger.LogInformation(
+            "Starting topup request. PhoneNumber:{PhoneNumber}",
+            request.PhoneNumber);
+
+        var duplicate = await GetDuplicateTransactionAsync(
+            request,
+            cancellationToken);
 
         if (duplicate is not null)
         {
-            return new CreateTopupResponse(
-                duplicate.Id,
-                duplicate.Status.ToString());
+            _logger.LogInformation(
+                "Duplicate topup request. Transaction:{TransactionId}",
+                duplicate.Id);
+
+            return CreateResponse(duplicate);
         }
 
-        var transaction = TopupTransaction.Create(
+        var transaction = CreateTransaction(request);
+
+        await SaveTransactionAsync(
+            transaction,
+            cancellationToken);
+
+        await PublishIntegrationEventAsync(
+            transaction,
+            request,
+            cancellationToken);
+
+        _logger.LogInformation(
+            "Topup request published successfully. Transaction:{TransactionId}",
+            transaction.Id);
+
+        return CreateResponse(transaction);
+    }
+
+    private async Task<TopupTransaction?> GetDuplicateTransactionAsync(
+        CreateTopupCommand request,
+        CancellationToken cancellationToken)
+    {
+        return await _repository.GetByIdempotencyKeyAsync(
+            request.IdempotencyKey,
+            cancellationToken);
+    }
+
+    private static TopupTransaction CreateTransaction(
+        CreateTopupCommand request)
+    {
+        return TopupTransaction.Create(
             Guid.Empty,
             PhoneNumber.Create(request.PhoneNumber),
             Money.Create(request.Amount),
             (MobileOperator)request.OperatorId,
             request.IdempotencyKey);
+    }
 
+    private async Task SaveTransactionAsync(
+        TopupTransaction transaction,
+        CancellationToken cancellationToken)
+    {
         await _repository.AddAsync(
             transaction,
             cancellationToken);
 
         await _unitOfWork.SaveChangesAsync(
             cancellationToken);
+    }
 
+    private async Task PublishIntegrationEventAsync(
+        TopupTransaction transaction,
+        CreateTopupCommand request,
+        CancellationToken cancellationToken)
+    {
         await _messageBus.PublishAsync(
             new TopupRequestedIntegrationEvent(
                 transaction.Id,
@@ -71,11 +117,11 @@ public sealed class CreateTopupCommandHandler
                 request.OperatorId,
                 request.IdempotencyKey),
             cancellationToken);
+    }
 
-        _logger.LogInformation(
-            "Topup Request Published. TransactionId:{Id}",
-            transaction.Id);
-
+    private static CreateTopupResponse CreateResponse(
+        TopupTransaction transaction)
+    {
         return new CreateTopupResponse(
             transaction.Id,
             transaction.Status.ToString());

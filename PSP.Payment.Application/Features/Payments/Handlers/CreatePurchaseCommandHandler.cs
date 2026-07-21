@@ -41,19 +41,60 @@ public sealed class CreatePurchaseCommandHandler
         CreatePurchaseCommand request,
         CancellationToken cancellationToken)
     {
-        var duplicate =
-            await _repository.GetByIdempotencyKeyAsync(
-                request.IdempotencyKey,
-                cancellationToken);
+        _logger.LogInformation(
+            "Starting purchase. TraceNumber:{TraceNumber}",
+            request.TraceNumber);
+
+        var duplicate = await GetDuplicateTransactionAsync(
+            request,
+            cancellationToken);
 
         if (duplicate is not null)
         {
-            return new CreatePurchaseResponse(
-                duplicate.Id,
-                duplicate.Status.ToString());
+            _logger.LogInformation(
+                "Duplicate purchase request. Transaction:{TransactionId}",
+                duplicate.Id);
+
+            return CreateResponse(duplicate);
         }
 
-        var transaction = PaymentTransaction.Create(
+        var transaction = CreateTransaction(request);
+
+        await SaveTransactionAsync(
+            transaction,
+            cancellationToken);
+
+        var purchase = await PurchaseFromBankAsync(
+            request,
+            cancellationToken);
+
+        if (!purchase.Success)
+        {
+            return await HandleFailedPurchaseAsync(
+                transaction,
+                cancellationToken);
+        }
+
+        return await HandleSuccessfulPurchaseAsync(
+            transaction,
+            purchase.Rrn,
+            request,
+            cancellationToken);
+    }
+
+    private async Task<PaymentTransaction?> GetDuplicateTransactionAsync(
+        CreatePurchaseCommand request,
+        CancellationToken cancellationToken)
+    {
+        return await _repository.GetByIdempotencyKeyAsync(
+            request.IdempotencyKey,
+            cancellationToken);
+    }
+
+    private static PaymentTransaction CreateTransaction(
+        CreatePurchaseCommand request)
+    {
+        return PaymentTransaction.Create(
             Pan.Create(request.Pan),
             Money.Create(request.Amount),
             request.PhoneNumber,
@@ -61,37 +102,56 @@ public sealed class CreatePurchaseCommandHandler
             TraceNumber.Create(request.TraceNumber),
             TerminalId.Create(request.TerminalId),
             request.IdempotencyKey);
+    }
 
+    private async Task SaveTransactionAsync(
+        PaymentTransaction transaction,
+        CancellationToken cancellationToken)
+    {
         await _repository.AddAsync(
             transaction,
             cancellationToken);
 
         await _unitOfWork.SaveChangesAsync(
             cancellationToken);
+    }
 
-        var purchase =
-            await _bankClient.PurchaseAsync(
-                new BankPurchaseRequest(
-                    request.Pan,
-                    request.Amount,
-                    request.TerminalId,
-                    request.TraceNumber),
-                cancellationToken);
+    private async Task<BankPurchaseResponse> PurchaseFromBankAsync(
+        CreatePurchaseCommand request,
+        CancellationToken cancellationToken)
+    {
+        return await _bankClient.PurchaseAsync(
+            new BankPurchaseRequest(
+                request.Pan,
+                request.Amount,
+                request.TerminalId,
+                request.TraceNumber),
+            cancellationToken);
+    }
 
-        if (!purchase.Success)
-        {
-            transaction.Fail();
+    private async Task<CreatePurchaseResponse> HandleFailedPurchaseAsync(
+        PaymentTransaction transaction,
+        CancellationToken cancellationToken)
+    {
+        transaction.Fail();
 
-            await _unitOfWork.SaveChangesAsync(
-                cancellationToken);
+        await _unitOfWork.SaveChangesAsync(
+            cancellationToken);
 
-            return new CreatePurchaseResponse(
-                transaction.Id,
-                transaction.Status.ToString());
-        }
+        _logger.LogWarning(
+            "Purchase failed. Transaction:{TransactionId}",
+            transaction.Id);
 
-        transaction.PurchaseSucceeded(
-            purchase.Rrn);
+        return CreateResponse(transaction);
+    }
+
+    private async Task<CreatePurchaseResponse> HandleSuccessfulPurchaseAsync(
+        PaymentTransaction transaction,
+        string rrn,
+        CreatePurchaseCommand request,
+        CancellationToken cancellationToken)
+    {
+        transaction.PurchaseSucceeded(rrn);
 
         await _unitOfWork.SaveChangesAsync(
             cancellationToken);
@@ -106,9 +166,15 @@ public sealed class CreatePurchaseCommandHandler
             cancellationToken);
 
         _logger.LogInformation(
-            "Purchase completed. Transaction:{Id}",
+            "Purchase completed successfully. Transaction:{TransactionId}",
             transaction.Id);
 
+        return CreateResponse(transaction);
+    }
+
+    private static CreatePurchaseResponse CreateResponse(
+        PaymentTransaction transaction)
+    {
         return new CreatePurchaseResponse(
             transaction.Id,
             transaction.Status.ToString());
