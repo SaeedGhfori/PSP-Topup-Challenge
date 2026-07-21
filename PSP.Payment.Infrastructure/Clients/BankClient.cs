@@ -44,7 +44,7 @@ public sealed class BankClient : IBankClient
             "Mock Confirmation => {Rrn}",
             request.Rrn);
 
-        await Task.Delay(100, cancellationToken);
+        await Task.Delay(300, cancellationToken);
     }
 
     public async Task ReversalAsync(
@@ -55,6 +55,6 @@ public sealed class BankClient : IBankClient
             "Mock Reversal => {Rrn}",
             request.Rrn);
 
-        await Task.Delay(100, cancellationToken);
+        await Task.Delay(300, cancellationToken);
     }
 }

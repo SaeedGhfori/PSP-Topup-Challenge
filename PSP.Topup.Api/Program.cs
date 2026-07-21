@@ -1,4 +1,3 @@
-using PSP.Messaging;
 using PSP.Topup.Api.Endpoints;
 using PSP.Topup.Api.Extensions;
 using PSP.Topup.Application;
@@ -28,6 +27,6 @@ app.MapOpenApi();
 app.MapScalarApiReference();
 app.UseGlobalException();
 app.MapTopupEndpoints();
-app.MapGet("/", () => Results.Ok("PSP Topup Service"));
+app.MapGet("/", () => Results.Redirect("/scalar"));
 
 app.Run();

@@ -34,7 +34,7 @@ app.MapScalarApiReference();
 
 app.MapPaymentEndpoints();
 
-app.MapGet("/",
-    () => Results.Ok("PSP Payment Service"));
+app.MapGet("/", () => Results.Redirect("/scalar"));
+
 
 app.Run();

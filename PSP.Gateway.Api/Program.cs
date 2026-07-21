@@ -1,3 +1,5 @@
+using Scalar.AspNetCore;
+
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,6 +18,12 @@ builder.Services.AddOpenApi();
 var app = builder.Build();
 
 app.MapOpenApi();
+
+app.MapScalarApiReference();
+
+app.MapGet("/", () => Results.Redirect("/scalar"));
+
+app.UseHttpsRedirection();
 
 app.MapReverseProxy();
 
