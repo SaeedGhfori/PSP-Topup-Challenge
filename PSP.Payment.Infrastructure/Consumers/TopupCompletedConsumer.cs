@@ -5,10 +5,9 @@ using Microsoft.Extensions.Logging;
 using PSP.Contracts.Events;
 using PSP.Payment.Application.Contracts.Bank;
 using PSP.Payment.Domain.Common;
-using PSP.Payment.Domain.Entities;
 using PSP.Payment.Domain.Repositories;
 
-namespace PSP.Payment.Infrastructure.Messaging.Consumers;
+namespace PSP.Payment.Infrastructure.Consumers;
 
 public sealed class TopupCompletedConsumer
     : IConsumer<TopupCompletedIntegrationEvent>

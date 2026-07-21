@@ -4,12 +4,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 
-using PSP.Messaging;
-using PSP.Topup.Application.Contracts.Services;
-using PSP.Topup.Application.Contracts.Services.Mci;
+using PSP.Topup.Application.Abstractions;
+using PSP.Topup.Application.Integrations.Mci;
 using PSP.Topup.Infrastructure.Clients;
-using PSP.Topup.Infrastructure.Configuration;
 using PSP.Topup.Infrastructure.Messaging.Consumers;
+using PSP.Topup.Infrastructure.Options;
 using PSP.Topup.Infrastructure.Services;
 
 namespace PSP.Topup.Infrastructure;

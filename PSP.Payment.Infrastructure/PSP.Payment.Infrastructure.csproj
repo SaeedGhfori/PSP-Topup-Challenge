@@ -8,6 +8,15 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Compile Remove="Exceptions\**" />
+      <Compile Remove="Logging\**" />
+      <EmbeddedResource Remove="Exceptions\**" />
+      <EmbeddedResource Remove="Logging\**" />
+      <None Remove="Exceptions\**" />
+      <None Remove="Logging\**" />
+    </ItemGroup>
+
+    <ItemGroup>
         <ProjectReference Include="..\PSP.Contracts\PSP.Contracts.csproj" />
         <ProjectReference Include="..\PSP.Messaging\PSP.Messaging.csproj" />
         <ProjectReference Include="..\PSP.SharedKernel\PSP.SharedKernel.csproj" />
@@ -17,9 +26,7 @@
 
     <ItemGroup>
         <Folder Include="Contracts\" />
-        <Folder Include="Logging\" />
         <Folder Include="Caching\" />
-        <Folder Include="Exceptions\" />
         <Folder Include="Messaging\Configuration\" />
         <Folder Include="Messaging\Publishers\" />
         <Folder Include="Options\" />

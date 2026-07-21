@@ -16,14 +16,10 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Contracts\" />
         <Folder Include="Logging\" />
         <Folder Include="Caching\" />
-        <Folder Include="Exceptions\" />
         <Folder Include="Messaging\Configuration\" />
         <Folder Include="Messaging\Publishers\" />
-        <Folder Include="Options\" />
-        <Folder Include="Resilience\" />
     </ItemGroup>
 
     <ItemGroup>

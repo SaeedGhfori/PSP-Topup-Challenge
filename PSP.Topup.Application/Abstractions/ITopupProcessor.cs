@@ -1,4 +1,4 @@
-namespace PSP.Topup.Application.Contracts.Services;
+namespace PSP.Topup.Application.Abstractions;
 
 public interface ITopupProcessor
 {

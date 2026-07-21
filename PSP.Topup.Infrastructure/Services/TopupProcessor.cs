@@ -2,8 +2,8 @@ using Microsoft.Extensions.Logging;
 
 using PSP.Contracts.Events;
 using PSP.Messaging.Abstractions;
-using PSP.Topup.Application.Contracts.Services;
-using PSP.Topup.Application.Contracts.Services.Mci;
+using PSP.Topup.Application.Abstractions;
+using PSP.Topup.Application.Integrations.Mci;
 using PSP.Topup.Domain.Common;
 using PSP.Topup.Domain.Enums;
 using PSP.Topup.Domain.Repositories;

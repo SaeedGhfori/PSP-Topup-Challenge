@@ -2,7 +2,7 @@ using System.Net.Http.Json;
 
 using Microsoft.Extensions.Logging;
 
-using PSP.Topup.Application.Contracts.Services.Mci;
+using PSP.Topup.Application.Integrations.Mci;
 
 namespace PSP.Topup.Infrastructure.Clients;
 

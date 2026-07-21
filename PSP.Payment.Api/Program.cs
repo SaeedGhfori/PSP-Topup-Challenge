@@ -1,6 +1,4 @@
-using PSP.Messaging;
 using PSP.Payment.Api.Endpoints;
-using PSP.Payment.Api.Extensions;
 using PSP.Payment.Application;
 using PSP.Payment.Infrastructure;
 using PSP.Payment.Persistence;

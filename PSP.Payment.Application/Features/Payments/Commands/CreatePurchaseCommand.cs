@@ -1,6 +1,6 @@
 using MediatR;
 
-using PSP.Payment.Application.Features.DTOs;
+using PSP.Payment.Application.Features.Payments.DTOs;
 
 namespace PSP.Payment.Application.Features.Payments.Commands;
 

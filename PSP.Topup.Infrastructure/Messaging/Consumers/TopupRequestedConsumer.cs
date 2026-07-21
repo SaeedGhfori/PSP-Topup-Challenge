@@ -3,7 +3,7 @@ using MassTransit;
 using Microsoft.Extensions.Logging;
 
 using PSP.Contracts.Events;
-using PSP.Topup.Application.Contracts.Services;
+using PSP.Topup.Application.Abstractions;
 using PSP.Topup.Domain.Common;
 using PSP.Topup.Domain.Entities;
 using PSP.Topup.Domain.Enums;

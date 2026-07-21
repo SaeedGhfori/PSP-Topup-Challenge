@@ -1,4 +1,4 @@
-namespace PSP.Messaging;
+namespace PSP.Messaging.Options;
 
 public sealed class RabbitMqOptions
 {

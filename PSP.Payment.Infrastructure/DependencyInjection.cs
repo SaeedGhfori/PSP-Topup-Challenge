@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 using PSP.Payment.Application.Contracts.Bank;
 using PSP.Payment.Infrastructure.Clients;
-using PSP.Payment.Infrastructure.Messaging.Consumers;
+using PSP.Payment.Infrastructure.Consumers;
 
 namespace PSP.Payment.Infrastructure;
 

@@ -23,19 +23,10 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Abstractions\Authentication\" />
-        <Folder Include="Abstractions\Caching\" />
-        <Folder Include="Abstractions\Clock\" />
-        <Folder Include="Abstractions\Messaging\" />
-        <Folder Include="Abstractions\Persistence\" />
-        <Folder Include="Abstractions\Services\" />
         <Folder Include="Behaviors\Idempotency\" />
         <Folder Include="Behaviors\Transaction\" />
         <Folder Include="Behaviors\Performance\" />
-        <Folder Include="Contracts\Messaging\" />
         <Folder Include="Features\Topup\Events\" />
-        <Folder Include="Interfaces\" />
-        <Folder Include="Mapping\" />
         <Folder Include="Features\Topup\Queries\" />
     </ItemGroup>
 

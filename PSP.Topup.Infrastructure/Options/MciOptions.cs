@@ -1,5 +1,4 @@
-
-namespace PSP.Topup.Infrastructure.Configuration
+namespace PSP.Topup.Infrastructure.Options
 {
     public sealed class MciOptions
     {

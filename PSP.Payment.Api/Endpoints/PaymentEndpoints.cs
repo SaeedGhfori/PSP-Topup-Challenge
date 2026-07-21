@@ -2,8 +2,8 @@ using MediatR;
 
 using Microsoft.AspNetCore.Mvc;
 
-using PSP.Payment.Application.Features.DTOs;
 using PSP.Payment.Application.Features.Payments.Commands;
+using PSP.Payment.Application.Features.Payments.DTOs;
 
 namespace PSP.Payment.Api.Endpoints;
 

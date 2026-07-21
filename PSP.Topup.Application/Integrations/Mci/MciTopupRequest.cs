@@ -1,4 +1,4 @@
-namespace PSP.Topup.Application.Contracts.Services.Mci;
+namespace PSP.Topup.Application.Integrations.Mci;
 
 public sealed record MciTopupRequest(
     string MobileNumber,

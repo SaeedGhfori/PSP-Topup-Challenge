@@ -8,17 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Abstractions\" />
-    <Folder Include="Auditing\" />
-    <Folder Include="Common\" />
-    <Folder Include="Errors\" />
-    <Folder Include="Events\" />
-    <Folder Include="Exceptions\" />
-    <Folder Include="Primitives\" />
-    <Folder Include="ValueObjects\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\PSP.Contracts\PSP.Contracts.csproj" />
   </ItemGroup>
 

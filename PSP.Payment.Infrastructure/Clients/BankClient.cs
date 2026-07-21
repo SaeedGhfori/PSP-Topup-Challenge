@@ -1,5 +1,3 @@
-using System.Net;
-
 using Microsoft.Extensions.Logging;
 
 using PSP.Payment.Application.Contracts.Bank;
