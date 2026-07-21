@@ -1,8 +1,11 @@
 using Microsoft.Extensions.Logging;
 
+using PSP.Contracts.Events;
+using PSP.Messaging.Abstractions;
 using PSP.Topup.Application.Contracts.Services;
 using PSP.Topup.Application.Contracts.Services.Mci;
 using PSP.Topup.Domain.Common;
+using PSP.Topup.Domain.Enums;
 using PSP.Topup.Domain.Repositories;
 
 namespace PSP.Topup.Infrastructure.Services;
@@ -13,17 +16,20 @@ public sealed class TopupProcessor : ITopupProcessor
     private readonly IMciClient _mciClient;
     private readonly IUnitOfWork _unitOfWork;
     private readonly ILogger<TopupProcessor> _logger;
+    private readonly IMessageBus _messageBus;
 
     public TopupProcessor(
         ITopupRepository repository,
         IMciClient mciClient,
         IUnitOfWork unitOfWork,
-        ILogger<TopupProcessor> logger)
+        ILogger<TopupProcessor> logger,
+        IMessageBus messageBus)
     {
         _repository = repository;
         _mciClient = mciClient;
         _unitOfWork = unitOfWork;
         _logger = logger;
+        _messageBus = messageBus;
     }
 
     public async Task ProcessAsync(
@@ -59,6 +65,14 @@ public sealed class TopupProcessor : ITopupProcessor
 
         await _unitOfWork.SaveChangesAsync(
             cancellationToken);
+
+        await _messageBus.PublishAsync(
+    new TopupCompletedIntegrationEvent(
+        transaction.Id,
+        transaction.Status == TransactionStatus.TopupSucceeded,
+        transaction.ProviderReference,
+        transaction.FailureReason),
+    cancellationToken);
 
         _logger.LogInformation(
             "Topup processed {TransactionId}",

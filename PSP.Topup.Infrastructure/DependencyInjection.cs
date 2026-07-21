@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 
+using PSP.Messaging;
 using PSP.Topup.Application.Contracts.Services;
 using PSP.Topup.Application.Contracts.Services.Mci;
 using PSP.Topup.Infrastructure.Clients;
@@ -46,18 +47,27 @@ public static class DependencyInjection
 
             x.UsingRabbitMq((context, cfg) =>
             {
+                var rabbitOptions = new RabbitMqOptions();
+
+                configuration
+                    .GetSection(RabbitMqOptions.SectionName)
+                    .Bind(rabbitOptions);
+
                 cfg.Host(
-                    configuration["RabbitMQ:Host"],
+                    rabbitOptions.Host,
+                    "/",
                     h =>
                     {
-                        h.Username(
-                            configuration["RabbitMQ:Username"]);
-
-                        h.Password(
-                            configuration["RabbitMQ:Password"]);
+                        h.Username(rabbitOptions.Username);
+                        h.Password(rabbitOptions.Password);
                     });
 
-                cfg.ConfigureEndpoints(context);
+                cfg.ReceiveEndpoint(
+                    "topup-requested-queue",
+                    e =>
+                    {
+                        e.ConfigureConsumer<TopupRequestedConsumer>(context);
+                    });
             });
         });
 
