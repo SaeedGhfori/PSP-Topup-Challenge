@@ -3,11 +3,43 @@
     <File Path="docker-compose.yml" />
   </Folder>
   <Folder Name="/docs/" />
-  <Folder Name="/docs/ADR/" />
-  <Folder Name="/docs/Architecture/" />
-  <Folder Name="/docs/C4/" />
+  <Folder Name="/docs/ADR/">
+    <File Path="001-clean-architecture.md" />
+    <File Path="002-yarp-gateway.md" />
+    <File Path="003-mock-services.md" />
+  </Folder>
+  <Folder Name="/docs/Architecture/">
+    <File Path="architecture.md" />
+  </Folder>
+  <Folder Name="/docs/C4/">
+    <File Path="Component.md" />
+    <File Path="Container.md" />
+    <File Path="Context.md" />
+  </Folder>
   <Folder Name="/docs/Images/" />
-  <Folder Name="/docs/Sequence/" />
+  <Folder Name="/docs/UML/" />
+  <Folder Name="/docs/UML/Activity/">
+    <File Path="payment.md" />
+    <File Path="topup.md" />
+  </Folder>
+  <Folder Name="/docs/UML/Class/">
+    <File Path="domain.md" />
+  </Folder>
+  <Folder Name="/docs/UML/Sequence/">
+    <File Path="end-to-end.md" />
+    <File Path="payment-failed.md" />
+    <File Path="payment-flow.md" />
+    <File Path="payment-success.md" />
+    <File Path="topup-failed.md" />
+    <File Path="topup-success.md" />
+  </Folder>
+  <Folder Name="/docs/UML/StateMachine/">
+    <File Path="payment-status.md" />
+  </Folder>
+  <Folder Name="/docs/UML/UseCase/">
+    <File Path="payment-usecase.md" />
+    <File Path="topup-usecase.md" />
+  </Folder>
   <Folder Name="/scripts/">
     <File Path="build.ps1" />
     <File Path="clean.ps1" />

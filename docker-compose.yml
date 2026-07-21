@@ -1,0 +1,35 @@
+version: "3.9"
+
+services:
+
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: psp-sqlserver
+
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "YourStrong@Passw0rd"
+
+    ports:
+      - "1433:1433"
+
+    volumes:
+      - sql_data:/var/opt/mssql
+
+  rabbitmq:
+    image: rabbitmq:3-management
+
+    container_name: psp-rabbitmq
+
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+
+volumes:
+
+  sql_data:
+
+  rabbitmq_data:
