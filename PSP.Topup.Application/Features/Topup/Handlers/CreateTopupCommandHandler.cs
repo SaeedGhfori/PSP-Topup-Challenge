@@ -50,6 +50,7 @@ public sealed class CreateTopupCommandHandler
         }
 
         var transaction = TopupTransaction.Create(
+            Guid.Empty,
             PhoneNumber.Create(request.PhoneNumber),
             Money.Create(request.Amount),
             (MobileOperator)request.OperatorId,

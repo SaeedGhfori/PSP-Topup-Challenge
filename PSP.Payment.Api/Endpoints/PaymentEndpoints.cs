@@ -28,10 +28,12 @@ public static class PaymentEndpoints
         ISender sender,
         CancellationToken cancellationToken)
     {
+        Console.WriteLine("Endpoint");
+
         CreatePurchaseResponse response =
-            await sender.Send(
-                command,
-                cancellationToken);
+            await sender.Send(command, cancellationToken);
+
+        Console.WriteLine("After Send");
 
         return TypedResults.Created(
             $"/api/payments/{response.TransactionId}",

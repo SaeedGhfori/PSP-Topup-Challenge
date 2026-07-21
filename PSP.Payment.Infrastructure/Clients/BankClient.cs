@@ -1,27 +1,60 @@
+using System.Net;
+
+using Microsoft.Extensions.Logging;
+
 using PSP.Payment.Application.Contracts.Bank;
 
 namespace PSP.Payment.Infrastructure.Clients;
 
 public sealed class BankClient : IBankClient
 {
-    public Task<BankPurchaseResponse> PurchaseAsync(
+    private readonly HttpClient _httpClient;
+    private readonly ILogger<BankClient> _logger;
+
+    public BankClient(
+        HttpClient httpClient,
+        ILogger<BankClient> logger)
+    {
+        _httpClient = httpClient;
+        _logger = logger;
+    }
+
+    public async Task<BankPurchaseResponse> PurchaseAsync(
         BankPurchaseRequest request,
         CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        _logger.LogInformation(
+            "Mock Purchase => Amount:{Amount}",
+            request.Amount);
+
+        await Task.Delay(300, cancellationToken);
+
+        return new BankPurchaseResponse(
+            true,
+            Guid.NewGuid().ToString("N"),
+            0,
+            "Purchase Successful");
     }
 
-    public Task ConfirmationAsync(
+    public async Task ConfirmationAsync(
         BankConfirmationRequest request,
         CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        _logger.LogInformation(
+            "Mock Confirmation => {Rrn}",
+            request.Rrn);
+
+        await Task.Delay(100, cancellationToken);
     }
 
-    public Task ReversalAsync(
+    public async Task ReversalAsync(
         BankReversalRequest request,
         CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        _logger.LogInformation(
+            "Mock Reversal => {Rrn}",
+            request.Rrn);
+
+        await Task.Delay(100, cancellationToken);
     }
 }

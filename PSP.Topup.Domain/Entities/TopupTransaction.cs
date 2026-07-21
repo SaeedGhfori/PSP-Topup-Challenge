@@ -43,6 +43,8 @@ public sealed class TopupTransaction : AuditableEntity<Guid>
 
     public string IdempotencyKey { get; private set; } = string.Empty;
 
+    public Guid PaymentTransactionId { get; private set; }
+
     /// <summary>
     /// Reference returned by MCI after successful top-up.
     /// </summary>
@@ -54,17 +56,22 @@ public sealed class TopupTransaction : AuditableEntity<Guid>
     public string? FailureReason { get; private set; }
 
     public static TopupTransaction Create(
+        Guid paymentTransactionId,
         PhoneNumber phoneNumber,
         Money amount,
         MobileOperator mobileOperator,
         string idempotencyKey)
     {
-        return new TopupTransaction(
+        var transaction = new TopupTransaction(
             Guid.NewGuid(),
             phoneNumber,
             amount,
             mobileOperator,
             idempotencyKey);
+
+        transaction.PaymentTransactionId = paymentTransactionId;
+
+        return transaction;
     }
 
     public void MarkSucceeded(string providerReference)

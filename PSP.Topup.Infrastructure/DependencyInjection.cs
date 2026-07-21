@@ -9,6 +9,7 @@ using PSP.Topup.Application.Contracts.Services;
 using PSP.Topup.Application.Contracts.Services.Mci;
 using PSP.Topup.Infrastructure.Clients;
 using PSP.Topup.Infrastructure.Configuration;
+using PSP.Topup.Infrastructure.Messaging.Consumers;
 using PSP.Topup.Infrastructure.Services;
 
 namespace PSP.Topup.Infrastructure;
@@ -47,30 +48,16 @@ public static class DependencyInjection
 
             x.UsingRabbitMq((context, cfg) =>
             {
-                var rabbitOptions = new RabbitMqOptions();
+                cfg.Host("localhost", "/", h =>
+                {
+                    h.Username("guest");
+                    h.Password("guest");
+                });
 
-                configuration
-                    .GetSection(RabbitMqOptions.SectionName)
-                    .Bind(rabbitOptions);
-
-                cfg.Host(
-                    rabbitOptions.Host,
-                    "/",
-                    h =>
-                    {
-                        h.Username(rabbitOptions.Username);
-                        h.Password(rabbitOptions.Password);
-                    });
-
-                cfg.ReceiveEndpoint(
-                    "topup-requested-queue",
-                    e =>
-                    {
-                        e.ConfigureConsumer<TopupRequestedConsumer>(context);
-                    });
+                cfg.ConfigureEndpoints(context);
             });
         });
-
+        services.AddScoped<PSP.Messaging.Abstractions.IMessageBus, MassTransitMessageBus>();
 
         return services;
     }

@@ -16,8 +16,6 @@ builder.Host.UseSerilog((context, logger) =>
     logger.ReadFrom.Configuration(context.Configuration);
 });
 
-builder.Services.AddMessaging(builder.Configuration);
-
 builder.Services.AddOpenApi();
 
 builder.Services.AddApplication();

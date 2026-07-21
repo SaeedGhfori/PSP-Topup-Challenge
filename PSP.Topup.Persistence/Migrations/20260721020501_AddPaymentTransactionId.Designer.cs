@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PSP.Topup.Persistence.Context;
 
@@ -11,9 +12,11 @@ using PSP.Topup.Persistence.Context;
 namespace PSP.Topup.Persistence.Migrations
 {
     [DbContext(typeof(TopupDbContext))]
-    partial class TopupDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260721020501_AddPaymentTransactionId")]
+    partial class AddPaymentTransactionId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
