@@ -267,15 +267,15 @@ Including:
 
 # Current Status
 
-- Solution Structure ✔
-- Gateway ✔
-- Mock Bank ✔
-- Mock MCI ✔
-- Payment Service (In Progress)
-- Top-up Service (In Progress)
-- RabbitMQ (Planned)
-- Docker (Planned)
-- Tests (Planned)
+- Solution Structure 
+- Gateway 
+- Mock Bank 
+- Mock MCI 
+- Payment Service 
+- Top-up Service 
+- RabbitMQ 
+- Docker 
+- Tests 
 
 ---
 
