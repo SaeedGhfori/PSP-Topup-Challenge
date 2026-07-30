@@ -63,6 +63,7 @@
   <Folder Name="/src/Mocks/">
     <Project Path="PSP.Mock.Bank.Api/PSP.Mock.Bank.Api.csproj" Id="9f70a1cf-2838-4b64-b165-d8c83f6aa7fa" />
     <Project Path="PSP.Mock.MCI.Api/PSP.Mock.MCI.Api.csproj" Id="7216f0d8-9904-4e8c-b405-bed5d6413400" />
+    <Project Path="PSP.Mock.Irancell.Api/PSP.Mock.Irancell.Api.csproj" Id="a1b2c3d4-e5f6-7890-abcd-ef1234567890" />
   </Folder>
   <Folder Name="/src/Services/" />
   <Folder Name="/src/Services/Payment/">

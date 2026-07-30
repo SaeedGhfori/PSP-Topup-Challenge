@@ -6,6 +6,8 @@ Start-Process powershell -ArgumentList "dotnet run --project ../src/Mocks/PSP.Mo
 
 Start-Process powershell -ArgumentList "dotnet run --project ../src/Mocks/PSP.Mock.MCI.Api"
 
+Start-Process powershell -ArgumentList "dotnet run --project ../src/Mocks/PSP.Mock.Irancell.Api"
+
 Start-Process powershell -ArgumentList "dotnet run --project ../src/Services/Payment/PSP.Payment.Api"
 
 Start-Process powershell -ArgumentList "dotnet run --project ../src/Services/Topup/PSP.Topup.Api"
