@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 using PSP.Contracts.Events;
 using PSP.Messaging.Abstractions;
 using PSP.Topup.Application.Abstractions;
-using PSP.Topup.Application.Integrations.Mci;
+using PSP.Topup.Application.Integrations;
 using PSP.Topup.Domain.Common;
 using PSP.Topup.Domain.Enums;
 using PSP.Topup.Domain.Repositories;
@@ -13,20 +13,20 @@ namespace PSP.Topup.Infrastructure.Services;
 public sealed class TopupProcessor : ITopupProcessor
 {
     private readonly ITopupRepository _repository;
-    private readonly IMciClient _mciClient;
+    private readonly ITopupProvider _topupProvider;
     private readonly IUnitOfWork _unitOfWork;
     private readonly ILogger<TopupProcessor> _logger;
     private readonly IMessageBus _messageBus;
 
     public TopupProcessor(
         ITopupRepository repository,
-        IMciClient mciClient,
+        ITopupProvider topupProvider,
         IUnitOfWork unitOfWork,
         ILogger<TopupProcessor> logger,
         IMessageBus messageBus)
     {
         _repository = repository;
-        _mciClient = mciClient;
+        _topupProvider = topupProvider;
         _unitOfWork = unitOfWork;
         _logger = logger;
         _messageBus = messageBus;
@@ -45,8 +45,8 @@ public sealed class TopupProcessor : ITopupProcessor
             throw new Exception("Transaction not found.");
 
         var response =
-            await _mciClient.TopupAsync(
-                new MciTopupRequest(
+            await _topupProvider.TopupAsync(
+                new TopupRequest(
                     transaction.PhoneNumber.Value,
                     transaction.Amount.Value,
                     transaction.Id.ToString()),
@@ -55,7 +55,7 @@ public sealed class TopupProcessor : ITopupProcessor
         if (response.Success)
         {
             transaction.MarkSucceeded(
-                response.ReferenceNumber);
+                response.ReferenceNumber ?? string.Empty);
         }
         else
         {

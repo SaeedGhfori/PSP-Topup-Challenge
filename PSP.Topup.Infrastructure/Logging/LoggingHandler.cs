@@ -15,7 +15,7 @@ public sealed class LoggingHandler : DelegatingHandler
         CancellationToken cancellationToken)
     {
         _logger.LogInformation(
-            "Calling MCI {Method} {Url}",
+            "Calling Topup Provider {Method} {Url}",
             request.Method,
             request.RequestUri);
 
@@ -23,7 +23,7 @@ public sealed class LoggingHandler : DelegatingHandler
             await base.SendAsync(request, cancellationToken);
 
         _logger.LogInformation(
-            "MCI Response {StatusCode}",
+            "Topup Provider Response {StatusCode}",
             response.StatusCode);
 
         return response;

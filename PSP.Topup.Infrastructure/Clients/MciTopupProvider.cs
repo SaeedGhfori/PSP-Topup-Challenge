@@ -2,25 +2,25 @@ using System.Net.Http.Json;
 
 using Microsoft.Extensions.Logging;
 
-using PSP.Topup.Application.Integrations.Mci;
+using PSP.Topup.Application.Integrations;
 
 namespace PSP.Topup.Infrastructure.Clients;
 
-public sealed class MciClient : IMciClient
+public sealed class MciTopupProvider : ITopupProvider
 {
     private readonly HttpClient _httpClient;
-    private readonly ILogger<MciClient> _logger;
+    private readonly ILogger<MciTopupProvider> _logger;
 
-    public MciClient(
+    public MciTopupProvider(
         HttpClient httpClient,
-        ILogger<MciClient> logger)
+        ILogger<MciTopupProvider> logger)
     {
         _httpClient = httpClient;
         _logger = logger;
     }
 
-    public async Task<MciTopupResponse> TopupAsync(
-        MciTopupRequest request,
+    public async Task<TopupResponse> TopupAsync(
+        TopupRequest request,
         CancellationToken cancellationToken = default)
     {
         _logger.LogInformation(
@@ -36,7 +36,7 @@ public sealed class MciClient : IMciClient
         response.EnsureSuccessStatusCode();
 
         var result =
-            await response.Content.ReadFromJsonAsync<MciTopupResponse>(
+            await response.Content.ReadFromJsonAsync<TopupResponse>(
                 cancellationToken: cancellationToken);
 
         if (result is null)

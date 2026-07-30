@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 
 using PSP.Topup.Application.Abstractions;
-using PSP.Topup.Application.Integrations.Mci;
+using PSP.Topup.Application.Integrations;
 using PSP.Topup.Infrastructure.Clients;
 using PSP.Topup.Infrastructure.Messaging.Consumers;
 using PSP.Topup.Infrastructure.Options;
@@ -19,25 +19,49 @@ public static class DependencyInjection
         this IServiceCollection services,
         IConfiguration configuration)
     {
-        services.Configure<MciOptions>(
-            configuration.GetSection(MciOptions.SectionName));
+        services.Configure<TopupProviderOptions>(
+            configuration.GetSection(TopupProviderOptions.SectionName));
 
         services.AddTransient<LoggingHandler>();
 
         services.AddTransient<CorrelationIdHandler>();
 
-        services.AddHttpClient<IMciClient, MciClient>((provider, client) =>
+        services.AddHttpClient<MciTopupProvider>((provider, client) =>
         {
             var options =
-                provider.GetRequiredService<IOptions<MciOptions>>().Value;
+                provider.GetRequiredService<IOptions<TopupProviderOptions>>().Value;
 
             client.BaseAddress =
-                new Uri(options.BaseUrl);
-
+                new Uri(options.Mci.BaseUrl);
         })
         .AddHttpMessageHandler<CorrelationIdHandler>()
         .AddHttpMessageHandler<LoggingHandler>()
         .AddStandardResilienceHandler();
+
+        services.AddHttpClient<IrancellTopupProvider>((provider, client) =>
+        {
+            var options =
+                provider.GetRequiredService<IOptions<TopupProviderOptions>>().Value;
+
+            client.BaseAddress =
+                new Uri(options.Irancell.BaseUrl);
+        })
+        .AddHttpMessageHandler<CorrelationIdHandler>()
+        .AddHttpMessageHandler<LoggingHandler>()
+        .AddStandardResilienceHandler();
+
+        services.AddScoped<ITopupProvider>(provider =>
+        {
+            var options =
+                provider.GetRequiredService<IOptions<TopupProviderOptions>>().Value;
+
+            return options.Provider switch
+            {
+                TopupProviderType.Mci => provider.GetRequiredService<MciTopupProvider>(),
+                TopupProviderType.Irancell => provider.GetRequiredService<IrancellTopupProvider>(),
+                _ => throw new InvalidOperationException($"Unsupported provider: {options.Provider}")
+            };
+        });
 
         services.AddScoped<ITopupProcessor, TopupProcessor>();
 
